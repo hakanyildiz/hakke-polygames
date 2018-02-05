@@ -30,7 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-icons/image-icons.html">
 
 
-
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-item/all-imports.html">
@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="kal-icons.html">
-<link rel="import" href="kal-search.html">
+<link rel="import" href="kal-header.html">
 
 
 <link rel="lazy-import" href="kal-home-page.html">
@@ -61,36 +61,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
-      ::-webkit-scrollbar {
-                  width: 10px !important;
-              }
-
-              ::-webkit-scrollbar-thumb {
-                  background-color: #222;
-                  border-radius: 5px;
-                  border: 2px solid #000;
-                  min-height: 50px;
-              }
-
-              ::-webkit-scrollbar-track {
-                  background-color: #000;
-              }
-
-
-
+      app-header-layout{
+        background: #222;
+        color: #fff;
+      }
 
       app-drawer-layout:not([narrow]) [drawer-toggle] {
         display: none;
       }
 
-      app-header {
-        color: #fff;
-        background-color: var(--app-primary-color);
-      }
-
-      app-header paper-icon-button {
-        --paper-icon-button-ink-color: white;
-      }
+      
       app-drawer{
         --app-drawer-content-container: {
             background-color: #222;
@@ -158,37 +138,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
 
-        /****************************** APP HEADER ****************************************/
-        app-header {
-          color: #fff;
-          background-color: #222;
-          --app-header-background-front-layer: {
-            background-image: url("/images/nouseradded.jpg");
-            background-position: 50% 10%;
-          };
-        }
-
-        app-header div[header-content]{
-          width:100%;
-          /* padding-bottom: 1rem; */
-          
-          @apply(--layout-horizontal);
-          @apply(--layout-center);
-          @apply(--layout-justified-center);
-          
-        }
-
-        app-header div[header-content] kal-search{
-          @apply(--layout-flex);
-        }
-
-        app-header div[header-content] paper-button{
-          height: 3rem;
-          color: #eee;
-          background-color: #222;
-          text-transform: capitalize
-        }
-
+      
 
         div[title] {
           font-size: 2em;
@@ -212,6 +162,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}">
     </app-route>
+
+
+    <!-- IronMediaQuery -->
+    <iron-media-query query="(min-width: 768px)" query-matches="{{appHeaderConfig}}"></iron-media-query>
+
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
       <!-- Drawer content -->
@@ -259,32 +214,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
 
-        <app-header slot="header" condenses fixed effects="waterfall blend-background parallax-background resize-title">
+        <kal-header isDesktop="[[appHeaderConfig]]"></kal-header>
       
-          <app-toolbar></app-toolbar>
-
-          <app-toolbar></app-toolbar>
-
-          <app-toolbar>
-            <div header-content>
-
-              <kal-search></kal-search>
-              <paper-button raised>Giriş Yap</paper-button>
-            </div>
-             
-          </app-toolbar>
-        
-        </app-header>
-
-        <!--  OLD
-        <app-header slot="header" condenses reveals effects="waterfall">
-          <app-toolbar>
-            <paper-icon-button icon="kal-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>My App</div>
-          </app-toolbar>
-        </app-header>
-      -->
         <iron-pages
+            id="ironpages"
             selected="[[page]]"
             attr-for-selected="name"
             fallback-selection="view404"
@@ -292,7 +225,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <kal-home-page name="home"></kal-home-page>
           <kal-game-page name="game"></kal-game-page>
           <kal-news-page name="news"></kal-news-page>
-          <kal-view404 name="view404"></kal-view404>
+          <kal-view404-page name="view404"></kal-view404-page>
         </iron-pages>
 
 
@@ -317,7 +250,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // This shouldn't be neccessary, but the Analyzer isn't picking up
           // Polymer.Element#rootPath
           rootPath: String,
+          appHeaderConfig: {
+            type: String,
+            notify: true,
+            observer: '_queryMatchesChanged'
+          },
+          appHeaderEffects: {
+            type: String,
+            nofity: true,
+            value: 'waterfall blend-background parallax-background'
+          }
         };
+      }
+      _queryMatchesChanged(isDesktop){
+        // if(isDesktop){
+        //   this.set('appHeaderEffects', 'waterfall blend-background parallax-background');
+        // }
+        // else{
+        //   this.set('appHeaderEffects', 'waterfall blend-background parallax-background');
+        // }
+
+        console.log('data',isDesktop);
       }
 
       static get observers() {

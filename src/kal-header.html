@@ -4,7 +4,10 @@
 <dom-module id="kal-header">
   <template>
     <style include="shared-styles">
-
+      
+         /* :host([is-desktop]) {
+            background-color: red;
+          }
 
         app-header {
             color: #fff;
@@ -40,6 +43,7 @@
 
         app-header div[header-content] paper-button{
           height: 3rem;
+          font-size: 1rem;
           color: #eee;
           background-color: #222;
           text-transform: capitalize
@@ -50,15 +54,16 @@
 
     <app-header slot="header" condenses fixed effects="'waterfall blend-background parallax-background">
       
-        <app-toolbar></app-toolbar>
-
-        <app-toolbar></app-toolbar>
+        <template is="dom-if" if="[[isDesktop]]">        
+            <app-toolbar></app-toolbar>
+            <app-toolbar></app-toolbar>
+        </template>
 
         <app-toolbar>
           <div header-content>
 
             <kal-search></kal-search>
-            <paper-button raised>Giriş Yap [[isDesktop]]</paper-button>
+            <paper-button raised>Giriş Yap</paper-button>
           </div>
            
         </app-toolbar>

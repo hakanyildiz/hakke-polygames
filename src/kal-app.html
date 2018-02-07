@@ -36,17 +36,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-item/all-imports.html">
 
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+
 
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="kal-icons.html">
 <link rel="import" href="kal-header.html">
+<link rel="import" href="kal-drawer-item.html">
 
 
 <link rel="lazy-import" href="kal-home-page.html">
 <link rel="lazy-import" href="kal-game-page.html">
 <link rel="lazy-import" href="kal-news-page.html">
 <link rel="lazy-import" href="kal-view404-page.html">
-
 
 
 <dom-module id="kal-app">
@@ -57,7 +59,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --app-primary-color: #4285f4;
         --app-secondary-color: #eee;
         --app-theme-color: #ff7600;
-        
+        --app-drawer-width: 200px;
+
         display: block;
       }
 
@@ -72,17 +75,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       
       app-drawer{
+
+        /* --app-drawer-width: 200px; */
+
         --app-drawer-content-container: {
             background-color: #222;
             color: #fff;
           }
 
       }
-
-
-    
-
-
       /****************************** APP DRAWER ****************************************/
         
         app-drawer{
@@ -124,22 +125,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 0 20px;
       }
 
-      .drawer-list a {
-        display: block;
-        /* padding: 0 16px; */
-        text-decoration: none;
-        color: var(--app-secondary-color);
-        line-height: 40px;
-      }
-
-      .drawer-list a.iron-selected {
-        color: var(--app-theme-color);
-        font-weight: bold;
-      }
-
-
-      
-
+     /* ******************* */
         div[title] {
           font-size: 2em;
         }
@@ -184,38 +170,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            
             <!-- <div main-title>Logo</div> -->
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-       
-          <a name="home" href="[[rootPath]]home">
-              <paper-icon-item>
-                  <iron-icon icon="icons:home" slot="item-icon">
-                    </iron-icon>
-                    Anasayfa
-              </paper-icon-item>
-          </a>
-
-          <a name="game" href="[[rootPath]]game">
-              <paper-icon-item>
-                  <iron-icon icon="hardware:videogame-asset" slot="item-icon">
-                    </iron-icon>
-                    Oyun
-              </paper-icon-item>
-          </a>
           
-          <a name="news" href="[[rootPath]]news">
-              <paper-icon-item>
-                  <iron-icon icon="image:collections-bookmark" slot="item-icon">
-                    </iron-icon>
-                    Haber
-              </paper-icon-item>
-          </a>
+          <kal-drawer-item name="home" href="[[rootPath]]home" icon="icons:home" title="Anasayfa"></kal-drawer-item>
+          <kal-drawer-item name="game" href="[[rootPath]]game" icon="hardware:videogame-asset" title="Oyun"></kal-drawer-item>
+          <kal-drawer-item name="news" href="[[rootPath]]news" icon="image:collections-bookmark" title="Haber"></kal-drawer-item>
+          <kal-drawer-item name="gallery" href="[[rootPath]]gallery" icon="icons:perm-media" title="Galeri" ></kal-drawer-item>
         </iron-selector>
       </app-drawer>
 
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
 
-        <kal-header isDesktop="[[appHeaderConfig]]"></kal-header>
-      
+        <kal-header is-desktop="[[isDesktop]]"></kal-header>
+        <!--   POLYMER DECLARED PROPERTIES *********************
+             is-desktop maps to isDesktop 
+            isDesktop maps to isdesktop -->
+
+
         <iron-pages
             id="ironpages"
             selected="[[page]]"
@@ -255,6 +226,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             notify: true,
             observer: '_queryMatchesChanged'
           },
+          isDesktop: String,
           appHeaderEffects: {
             type: String,
             nofity: true,
@@ -269,8 +241,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // else{
         //   this.set('appHeaderEffects', 'waterfall blend-background parallax-background');
         // }
-
-        console.log('data',isDesktop);
+          this.set('isDesktop', isDesktop);
+        console.log('this.isDesktop: ',this.isDesktop);
       }
 
       static get observers() {

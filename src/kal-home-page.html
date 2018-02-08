@@ -19,7 +19,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px;
         height: 100vh;
         overflow-y: scroll !important;
+        
+        font-size: calc(0.6em + (1.3125 - 1) * ((100vw - 20em) / (80 - 20)));
+        line-height: calc(1em + (1.8 - 1.4) * ((100vw - 20em) / (80 - 20)));
+
       }
+
+    
 
       #home-page{
         @apply(--layout-horizontal);
@@ -41,12 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         @apply(--layout-vertical);
       }
 
-      .content-container .left-content figure .img-container iron-image{
-        height: 26rem;
-      }
-      .content-container .right-content figure .img-container iron-image{
-        height: 11rem;
-      }
+     
 
       .img-container{
         position: relative;
@@ -86,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         -ms-flex-direction: column;
         -webkit-flex-direction: column;
         flex-direction: column;
-        padding: 20px;
+        /* padding: 20px; */
         background-color: white;
         border: 1px solid #ddd;
         cursor: pointer;
@@ -125,15 +126,64 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         flex-direction: column;
       }
       .item .primary{
-        font-size: 16px;
+        /* font-size: 16px; */
         font-weight: bold;
       }
       .item .shortText{
-        font-size: 14px;
+        /* font-size: 14px; */
+      }
+      .continue-item{
+        width: 100%;
+      }
+      .continue-item paper-button{
+        width: inherit;
+        font-size: 12px;
+      }
+      
+
+      /* Desktops and laptops ----------- */
+      @media only screen  and (min-width : 1224px) {
+
+
+        .content-container .left-content figure .img-container iron-image{
+          height: 21rem;
+        }
+        .content-container .right-content figure .img-container iron-image{
+          height: 7.44rem;
+        }
+
+        #items .item{
+          padding: 10px;
+          font-size: 12px;
+        }
+        .item iron-image{
+          width: 130px;
+          height: 80px;
+          box-sizing: border-box;
+          background-color: #DDD;
+        }
+      }
+      
+      /* Desktops and laptops ----------- */
+      @media only screen  and (min-width : 1366px) {
+        .content-container .left-content figure .img-container iron-image{
+          height: 26rem;
+        }
+        .content-container .right-content figure .img-container iron-image{
+          height: 11rem;
+        }
       }
 
+      /* Large screens ----------- */
+      @media only screen  and (min-width : 1824px) {
+        .content-container .left-content figure .img-container iron-image{
+          height: 26rem;
+        }
+        .content-container .right-content figure .img-container iron-image{
+          height: 11rem;
+        }
 
-
+      }
 
 
       .content-container{
@@ -226,19 +276,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       </div>
                     </div>
                   </div>
-              <div class="item">
-                      <div class="item-column">
-                        <iron-image src="https://cdn.kaldirirmi.com/images/news/metal-gear-survive-background.jpg" preload sizing="cover"></iron-image>
-                        <div class="pad">
-                          <div class="primary">
-                              Metal Gear Survive Sistem Gereksinimleri Çıktı
-                          </div>
-                          <div class="shortText">
-                              İstemediğin Ot, Burnunun Dibinde Bitermiş
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="continue-item">
+                    <paper-button raised>Devamı</paper-button>
+                  </div>
             </div>
         </paper-material>
     </div>

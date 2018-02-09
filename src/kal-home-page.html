@@ -9,6 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-request.html">
+
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="kal-home-page">
@@ -133,6 +135,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         /* font-size: 14px; */
       }
       .continue-item{
+        padding-top: 5px;
         width: 100%;
       }
       .continue-item paper-button{
@@ -143,24 +146,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       /* Desktops and laptops ----------- */
       @media only screen  and (min-width : 1224px) {
-
-
         .content-container .left-content figure .img-container iron-image{
           height: 21rem;
         }
         .content-container .right-content figure .img-container iron-image{
-          height: 7.44rem;
+          height: 6.9rem;
+        }
+
+        .content-container .right-content figure figcaption{
+          @apply(--layout-vertical);
+          @apply(--layout-center-center);
+          height: 50px;
+          font-size: 14px;
+          line-height: 20px;
         }
 
         #items .item{
           padding: 10px;
-          font-size: 12px;
+          line-height: 15px;
         }
         .item iron-image{
           width: 130px;
           height: 80px;
           box-sizing: border-box;
           background-color: #DDD;
+        }
+
+        .item .pad .primary{
+          font-size: 12px;
+        }
+        .item .pad .shortText{
+          font-size: 10px;
         }
       }
       
@@ -174,17 +190,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
+        /* Desktops and laptops ----------- */
+        @media only screen  and (min-width : 1620px) {
+        .content-container .left-content figure .img-container iron-image{
+          height: 23rem;
+        }
+        .content-container .right-content figure .img-container iron-image{
+          height: 8rem;
+        }
+
+        .item iron-image{
+          width: 170px;
+          height: 92px;
+          box-sizing: border-box;
+          background-color: #DDD;
+        }
+        .item .pad .primary{
+          font-size: 16px;
+        }
+        .item .pad .shortText{
+          font-size: 14px;
+        }
+      }
+
       /* Large screens ----------- */
       @media only screen  and (min-width : 1824px) {
         .content-container .left-content figure .img-container iron-image{
-          height: 26rem;
+          height: 23rem;
         }
         .content-container .right-content figure .img-container iron-image{
-          height: 11rem;
+          height: 8rem;
         }
-
       }
-
 
       .content-container{
         @apply(--layout-flex-8);
@@ -193,95 +230,68 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         @apply(--layout-flex-4);
       }
     </style>
-
-    <!-- <div class="card">
-      <div class="circle">1</div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-    </div> -->
+<!-- 
+    <iron-ajax
+      id="ajax"
+      url="http://localhost:8081/data.json"
+      handle-as="json"
+      on-response="_handleNewsResponse"
+      loading="{{loading}}"
+      debounce-duration="300"></iron-ajax> -->
 
     <div id="home-page">
-
         <paper-material elevation="4" class="content-container">
             <div class="left-content">
                 <figure>
-                  <a href="/">
+                  <a href="news/[[news.first.url]]">
                     <div class="img-container">
-                        <iron-image src="https://cdn.kaldirirmi.com/images/news/metal-gear-survive-background.jpg" preload sizing="cover"></iron-image>
+                        <iron-image src="[[cdn]][[news.first.picture]]" preload sizing="cover"></iron-image>
                     </div>
                   </a>
-                  <figcaption>Metal Gear Survive Sistem Gereksinimleri Çıktı</figcaption>
+                  <figcaption>[[news.first.title]]</figcaption>
                 </figure>
             </div>
             <div class="right-content">
-                <figure>
-                    <a href="/">
-                      <div class="img-container">
-                          <iron-image src="https://cdn.kaldirirmi.com/images/news/maxresdefault.jpg" preload sizing="cover"></iron-image>
-                        </div>
-                    </a>
-                    <figcaption>Metal Gear Survive Sistem Gereksinimleri Çıktı</figcaption>
-                  </figure>
-                  <figure>
-                      <a href="/">
+                  <template is="dom-repeat" items={{news.center}} 
+                    as=item>
+                    <figure>
+                      <a href="[[item.url]]">
                         <div class="img-container">
-                            <iron-image src="https://cdn.kaldirirmi.com/images/news/microsoft.jpg" preload sizing="cover"></iron-image>
-                        </div>
-                      </a>
-                      <figcaption>Metal Gear Survive Sistem Gereksinimleri Çıktı</figcaption>
-                  </figure>
+                            <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
+                          </div>
+                      </a>             
+                      <figcaption>[[item.title]]</figcaption>
+                    </figure>
+                  </template>
             </div>
         </paper-material>
-    
         
         <paper-material elevation="1" class="other-container">
             <div id="items">
-              <div class="item">
-                <div class="item-column">
-                  <iron-image src="https://cdn.kaldirirmi.com/images/news/metal-gear-survive-background.jpg" preload sizing="cover"></iron-image>
-                  <div class="pad">
-                    <div class="primary">
-                        Metal Gear Survive Sistem Gereksinimleri Çıktı
-                    </div>
-                    <div class="shortText">
-                        İstemediğin Ot, Burnunun Dibinde Bitermiş
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                  <div class="item-column">
-                    <iron-image src="https://cdn.kaldirirmi.com/images/news/metal-gear-survive-background.jpg" preload sizing="cover"></iron-image>
-                    <div class="pad">
-                      <div class="primary">
-                          Metal Gear Survive Sistem Gereksinimleri Çıktı
-                      </div>
-                      <div class="shortText">
-                          İstemediğin Ot, Burnunun Dibinde Bitermiş
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              <div class="item">
+              <template is="dom-repeat" items={{news.right}} 
+                as=item >
+                <div class="item">
                     <div class="item-column">
-                      <iron-image src="https://cdn.kaldirirmi.com/images/news/metal-gear-survive-background.jpg" preload sizing="cover"></iron-image>
-                      <div class="pad">
+                        <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
+                        <div class="pad">
                         <div class="primary">
-                            Metal Gear Survive Sistem Gereksinimleri Çıktı
+                            [[item.title]]
                         </div>
                         <div class="shortText">
-                            İstemediğin Ot, Burnunun Dibinde Bitermiş
+                            [[item.subtitle]]
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="continue-item">
-                    <paper-button raised>Devamı</paper-button>
-                  </div>
-            </div>
+              </template>
+              </div>
+              <div class="continue-item">
+                <paper-button raised>Devamı</paper-button>
+              </div>
         </paper-material>
     </div>
+
+    <div style="height:1000px;"></div>
 
     
   </template>
@@ -289,6 +299,159 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class KalHomePage extends Polymer.Element {
       static get is() { return 'kal-home-page'; }
+
+      /**
+        * Object describing property-related metadata used by Polymer features
+        */
+      static get properties() {
+        return {
+          cdn : {
+            type: String,
+            value: 'https://cdn.kaldirirmi.com/images/news/',
+          },
+          loading: {
+            type: Boolean,
+            notify: true
+          },
+          content: {
+            type: Array,
+            value: [],
+            notify: true
+          },
+          news: {
+            type: Object,
+            value: function(){
+              return {
+                first: null,
+                center: [],
+                right: []
+              }
+            }
+          }
+        };
+      }
+
+
+      /**
+        * Called every time the element is inserted into the DOM. Useful for 
+        * running setup code, such as fetching resources or rendering.
+        * Generally, you should try to delay work until this time.
+        */
+      connectedCallback() {
+        super.connectedCallback();
+      
+        const news = [
+              {  
+                  "id":1000094,
+                  "title":"Yükselme Ligi 2017 Yaz Mevsimi Maçları Sona Erdi",
+                  "url":"yukselme-ligi-2017-yaz-mevsimi-maclari-sona-erdi",
+                  "picture":"yukselme-ligi-final.jpg",
+                  "details":"",
+                  "category":null,
+                  "publisher":null,
+                  "releasedate":null,
+                  "viewcount":126,
+                  "subtitle":"Sürpriz sonuçlar geldi, Galatasaray elindeki fırsatı değerlendiremedi.",
+                  "searchkeywords":null,
+                  "publisheravatar":null,
+                  "relatedgames":null
+              },
+              {  
+                  "id":1000093,
+                  "title":"Playerunknown’s Battlegrounds’un Haftalık Güncellemesi Yayınlanacak",
+                  "url":"playerunknown’s-battlegrounds’un-haftalik-guncellemesi-yayinlanacak",
+                  "picture":"pubg-16-hafta-update.jpg",
+                  "details":"",
+                  "category":null,
+                  "publisher":null,
+                  "releasedate":null,
+                  "viewcount":148,
+                  "subtitle":"16.hafta güncellemesinde birçok sorun düzeltiliyor",
+                  "searchkeywords":null,
+                  "publisheravatar":null,
+                  "relatedgames":null
+              },
+              {  
+                  "id":1000092,
+                  "title":"Steam’de Köklü Değişiklikler Bizi Bekliyor",
+                  "url":"steam’de-koklu-degisiklikler-bizi-bekliyor",
+                  "picture":"steam-logo.jpg",
+                  "details":"",
+                  "category":null,
+                  "publisher":null,
+                  "releasedate":null,
+                  "viewcount":114,
+                  "subtitle":"İşte değişiklikler…",
+                  "searchkeywords":null,
+                  "publisheravatar":null,
+                  "relatedgames":null
+              },
+              {  
+                  "id":1000091,
+                  "title":"Playerunknown’s Battlegrounds’un Tam Sürümü Ertelendi",
+                  "url":"playerunknown’s-battlegrounds’un-tam-surumu-ertelendi",
+                  "picture":"pubg-haber.jpg",
+                  "details":"",
+                  "category":null,
+                  "publisher":null,
+                  "releasedate":null,
+                  "viewcount":132,
+                  "subtitle":"Tam sürüme 2017 yılının sonunda geçilmesi planlanıyor!",
+                  "searchkeywords":null,
+                  "publisheravatar":null,
+                  "relatedgames":null
+              },
+              {  
+                  "id":1000090,
+                  "title":"Assassin’s Creed Origins ne kadar büyük olacak?",
+                  "url":"assassin’s-creed-origins-ne-kadar-buyuk-olacak-",
+                  "picture":"assassisns-creed-origins-haber.jpg",
+                  "details":"",
+                  "category":null,
+                  "publisher":null,
+                  "releasedate":null,
+                  "viewcount":117,
+                  "subtitle":"Yönetmeni Ashraf Ismail röportajında açıkladı",
+                  "searchkeywords":null,
+                  "publisheravatar":null,
+                  "relatedgames":null
+              },
+              {  
+                  "id":1000089,
+                  "title":"LOL Evinde",
+                  "url":"lol-evinde",
+                  "picture":"server-relocation-final-merged-fullsize.jpg",
+                  "details":"",
+                  "category":null,
+                  "publisher":null,
+                  "releasedate":null,
+                  "viewcount":136,
+                  "subtitle":"Şimdi Faker Düşünsün !",
+                  "searchkeywords":null,
+                  "publisheravatar":null,
+                  "relatedgames":null
+              }
+        ];
+
+        let index = 0;
+        news.forEach(element => {
+          if(index == 0){
+            this.set('news.first', element);
+          }
+          else if(index >= 1 && index <= 2 ){
+            this.push('news.center', element);
+          }
+          else{
+            this.push('news.right', element);
+          }
+          index++;
+        });
+              
+      }
+      _handleNewsResponse(a){
+        console.log("data", a.detail.response.length);
+      }
+
     }
 
     window.customElements.define(KalHomePage.is, KalHomePage);

@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="shared-styles.html">
 
-<link rel="import" href="kal-game-item.html">
+<link rel="import" href="kal-home-gameitem.html">
 
 
 <dom-module id="kal-home-page">
@@ -23,8 +23,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
         padding: 10px;
-        height: 100vh;
-        overflow-y: scroll !important;
+        /* height: 100vh; */
+        /* overflow-y: scroll !important; */
         
         font-size: calc(0.6em + (1.3125 - 1) * ((100vw - 20em) / (80 - 20)));
         line-height: calc(1em + (1.8 - 1.4) * ((100vw - 20em) / (80 - 20)));
@@ -242,7 +242,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       /* GAMELIST */
-      #gamelist{
+      #game-list{
         @apply(--layout-horizontal);
         @apply(--layout-center-center);
 
@@ -250,7 +250,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         flex-flow: row wrap;
         width: 100%;
         height: auto;        
-      
+      }
+
+      #game-list kal-home-gameitem{
+        /* width: 21.2222222%;
+        margin: 7px; */
+        width: 25%;
       }
 
 
@@ -326,26 +331,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
 
     
-
     <!-- Oyunlar -->
-
     <div id="game-list">
       <template is="dom-repeat" items="{{gamelist}}">
-          <kal-game-item game="[[item]]"></kal-game-item>
+          <kal-home-gameitem game="[[item]]"></kal-home-gameitem>
       </template>
-      <!-- <a class="game" onclick="load();" itemprop="url" href="/oyun/okami-hd">
+      <!-- 
+      <a class="game" onclick="load();" itemprop="url" href="/oyun/okami-hd">
         <iron-image sizing="cover" preload fade src="//cdn.kaldirirmi.com/images/games/okami-logo.jpg"></iron-image>
         <div class="game-title"><span>Okami HD</span></div>
-      </a> -->
-      
+      </a>
+      -->
     </div>
 
-
-
-
-    <div style="height:1000px;"></div>
-
-    
   </template>
 
   <script>

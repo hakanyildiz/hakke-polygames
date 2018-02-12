@@ -1,4 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+
 <link rel="import" href="kal-search.html">
 
 <dom-module id="kal-header">
@@ -51,23 +53,18 @@
 
     </style>
 
-
-    <app-header slot="header" condenses fixed effects="'waterfall blend-background parallax-background">
-      
+    <app-header slot="header" condenses fixed effects="waterfall blend-background parallax-background">
         <template is="dom-if" if="[[isDesktop]]">        
             <app-toolbar></app-toolbar>
             <app-toolbar></app-toolbar>
         </template>
-
         <app-toolbar>
           <div header-content>
-
             <kal-search></kal-search>
             <paper-button raised>Giriş Yap</paper-button>
           </div>
            
         </app-toolbar>
-      
       </app-header>
 
       <!--  OLD

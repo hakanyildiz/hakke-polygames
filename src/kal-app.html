@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
@@ -41,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="kal-icons.html">
-<link rel="import" href="kal-header.html">
+<link rel="import" href="kal-search.html">
 <link rel="import" href="kal-drawer-item.html">
 
 
@@ -64,7 +65,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
-      ::-webkit-scrollbar {
+      /* ::-webkit-scrollbar {
                   width: 10px !important;
               }
 
@@ -77,7 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               ::-webkit-scrollbar-track {
                   background-color: rgb(66, 63, 63);
-              }
+              } */
 
       app-header-layout{
         background: #222;
@@ -148,6 +149,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         div[empty-content]{
           height: 1000px;
         }
+
+          /****************************** APP HEADER ****************************************/
+        app-header {
+        color: #fff;
+        background-color: #222;
+        --app-header-background-front-layer: {
+              background-image: url("/images/nouseradded.jpg");
+              background-position: 50% 10%;
+            };
+        }
+
+        app-header div[header-content]{
+          width:100%;
+          /* padding-bottom: 1rem; */
+          @apply(--layout-horizontal);
+          @apply(--layout-center);
+          @apply(--layout-justified-center);
+        }
+
+        app-header div[header-content] kal-search{
+          @apply(--layout-flex);
+        }
+
+        app-header div[header-content] paper-button{
+          height: 3rem;
+          font-size: 1rem;
+          color: #eee;
+          background-color: #222;
+          text-transform: capitalize
+        }
+
+
     </style>
     </custom-style>
    
@@ -164,10 +197,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         tail="{{subroute}}">
     </app-route>
 
-
     <!-- IronMediaQuery -->
     <iron-media-query query="(min-width: 768px)" query-matches="{{appHeaderConfig}}"></iron-media-query>
-
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
       <!-- Drawer content -->
@@ -185,7 +216,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            
             <!-- <div main-title>Logo</div> -->
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          
           <kal-drawer-item name="home" href="[[rootPath]]home" icon="icons:home" title="Anasayfa"></kal-drawer-item>
           <kal-drawer-item name="game" href="[[rootPath]]game" icon="hardware:videogame-asset" title="Oyun"></kal-drawer-item>
           <kal-drawer-item name="news" href="[[rootPath]]news" icon="image:collections-bookmark" title="Haber"></kal-drawer-item>
@@ -195,8 +225,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
+          <app-header slot="header" condenses fixed effects="waterfall blend-background parallax-background">
+              <template is="dom-if" if="[[isDesktop]]">        
+                  <app-toolbar></app-toolbar>
+                  <app-toolbar></app-toolbar>
+              </template>
+              <app-toolbar>
+                <div header-content>
+                  <kal-search></kal-search>
+                  <paper-button raised>Giriş Yap</paper-button>
+                </div>
+              </app-toolbar>
+         </app-header>
 
-        <kal-header is-desktop="[[isDesktop]]"></kal-header>
+        <!-- <kal-header is-desktop="[[isDesktop]]"></kal-header> -->
         <!--   POLYMER DECLARED PROPERTIES *********************
              is-desktop maps to isDesktop 
             isDesktop maps to isdesktop -->
@@ -215,7 +257,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </iron-pages>
 
 
-        <div empty-content></div>
+        <!-- <div empty-content></div> -->
       </app-header-layout>
     </app-drawer-layout>
   </template>

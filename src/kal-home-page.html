@@ -11,7 +11,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-request.html">
 
+
 <link rel="import" href="shared-styles.html">
+
+<link rel="import" href="kal-game-item.html">
+
 
 <dom-module id="kal-home-page">
   <template>
@@ -35,16 +39,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .content-container{
         width:100%;
+        @apply(--layout-vertical);
+      }
+
+      .content-container .top-content{
         @apply(--layout-horizontal);
       }
 
-     
+      .content-container .bottom-content{
+        @apply(--layout-vertical);
+      }
+      
 
-      .content-container .left-content{
+      .content-container .top-content .left-content{
         width: 66.66666666666666666666%;
         @apply(--layout-vertical);
       }
-      .content-container .right-content{
+      .content-container .top-content .right-content{
         width: 33.33333333333333333333%;
         @apply(--layout-vertical);
       }
@@ -146,14 +157,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       /* Desktops and laptops ----------- */
       @media only screen  and (min-width : 1224px) {
-        .content-container .left-content figure .img-container iron-image{
+        .content-container .top-content .left-content figure .img-container iron-image{
           height: 21rem;
         }
-        .content-container .right-content figure .img-container iron-image{
+        .content-container .top-content .right-content figure .img-container iron-image{
           height: 6.9rem;
         }
 
-        .content-container .right-content figure figcaption{
+        .content-container .top-content .right-content figure figcaption{
           @apply(--layout-vertical);
           @apply(--layout-center-center);
           height: 50px;
@@ -192,10 +203,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         /* Desktops and laptops ----------- */
         @media only screen  and (min-width : 1620px) {
-        .content-container .left-content figure .img-container iron-image{
+        .content-container .top-content .left-content figure .img-container iron-image{
           height: 23rem;
         }
-        .content-container .right-content figure .img-container iron-image{
+        .content-container .top-content .right-content figure .img-container iron-image{
           height: 8rem;
         }
 
@@ -229,6 +240,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .other-container{
         @apply(--layout-flex-4);
       }
+
+      /* GAMELIST */
+      #gamelist{
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+
+        margin: 10px 0px;
+        flex-flow: row wrap;
+        width: 100%;
+        height: auto;        
+      
+      }
+
+
+
+
+
     </style>
 <!-- 
     <iron-ajax
@@ -241,29 +269,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div id="home-page">
         <paper-material elevation="4" class="content-container">
-            <div class="left-content">
-                <figure>
-                  <a href="news/[[news.first.url]]">
-                    <div class="img-container">
-                        <iron-image src="[[cdn]][[news.first.picture]]" preload sizing="cover"></iron-image>
-                    </div>
-                  </a>
-                  <figcaption>[[news.first.title]]</figcaption>
-                </figure>
-            </div>
-            <div class="right-content">
-                  <template is="dom-repeat" items={{news.center}} 
-                    as=item>
-                    <figure>
-                      <a href="[[item.url]]">
-                        <div class="img-container">
-                            <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
-                          </div>
-                      </a>             
-                      <figcaption>[[item.title]]</figcaption>
-                    </figure>
-                  </template>
-            </div>
+          <div class="top-content">
+              <div class="left-content">
+                  <figure>
+                    <a href="news/[[news.first.url]]">
+                      <div class="img-container">
+                          <iron-image src="[[cdn]][[news.first.picture]]" preload sizing="cover"></iron-image>
+                      </div>
+                    </a>
+                    <figcaption>[[news.first.title]]</figcaption>
+                  </figure>
+              </div>
+              <div class="right-content">
+                    <template is="dom-repeat" items={{news.center}} 
+                      as=item>
+                      <figure>
+                        <a href="[[item.url]]">
+                          <div class="img-container">
+                              <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
+                            </div>
+                        </a>             
+                        <figcaption>[[item.title]]</figcaption>
+                      </figure>
+                    </template>
+              </div>
+          </div>
+          <div class="bottom-content">
+          fsafaf
+          </div>
+          
         </paper-material>
         
         <paper-material elevation="1" class="other-container">
@@ -290,6 +324,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </div>
         </paper-material>
     </div>
+
+    
+
+    <!-- Oyunlar -->
+
+    <div id="game-list">
+      <template is="dom-repeat" items="{{gamelist}}">
+          <kal-game-item game="[[item]]"></kal-game-item>
+      </template>
+      <!-- <a class="game" onclick="load();" itemprop="url" href="/oyun/okami-hd">
+        <iron-image sizing="cover" preload fade src="//cdn.kaldirirmi.com/images/games/okami-logo.jpg"></iron-image>
+        <div class="game-title"><span>Okami HD</span></div>
+      </a> -->
+      
+    </div>
+
+
+
 
     <div style="height:1000px;"></div>
 
@@ -327,6 +379,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 right: []
               }
             }
+          },
+          gamelist: {
+            type: Array,
+            value: [],
+            notify: true
           }
         };
       }
@@ -430,7 +487,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   "searchkeywords":null,
                   "publisheravatar":null,
                   "relatedgames":null
+              },
+              {  
+                  "id":1000042,
+                  "title":"Mass Effect Andromeda Korsana Yenik Düştü",
+                  "url":"mass-effect-andromeda-korsana-yenik-dustu",
+                  "picture":"masseffectandromeda.jpg",
+                  "details":"\u003cp style=\"background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;\"\u003eElectronic\r\nArts\u0026nbsp;ve\u0026nbsp;Bioware\u0026nbsp;işbirliği ile geliştirilen\u0026nbsp;Mass Effect\r\nAndromeda\u0026nbsp;yaklaşık 2 hafta önce, PC, Playstation 4 ve Xbox One’da eş\r\nzamanlı olarak satışa sunuldu. Hikaye tabanlı bir oyun olan Mass Efffect\r\nAndromeda, maalesef PC platformunda pek de parlak bir grafik çizemedi. PC\r\noyuncularının genel itibariyle, hikaye tabanlı oyunları korsan olarak oynamayı\r\ntercih etmesi, en büyük neden olarak gösterilebilir.Bioware,\u0026nbsp;Mass Effect\r\nAndromeda’da\u0026nbsp;Denuvo\u0026nbsp;isimli DRM koruma sistemini kullanıyordu. Bu\r\nsistem Resident Evil 7’de de kullanılmış ve onda da oyuncular 1 haftadan kısa\r\nbir sürede kırmayı becermişlerdi. Kendilerinin başına da aynı şeyin gelmesinden\r\nkorkan geliştiriciler pek de haksız çıkmadı.Mass Effect Andromeda\u0026nbsp;da bu\r\nduruma yalnızca 13 gün dayanabildi. Yapımcı, Denuvo kalkanlarının devre dışı\r\nbırakıldığını ve Mass Effect Andromeda’nın “crack” dosyasının büyük bir\r\nbölümünün tamamlandığını açıkladı.İşin aslına bakarsak, korsanları etkisiz\r\nbırakmanın yolu, oyunu kıran topluluklara bir nevi rüşvet vermekten geçiyor. Bu\r\nyolun yadsınamaz bir gerçek olduğunu kabul eden EA daha önceleri FIFA serisinde\r\nkorsanlarla anlaşmış ve oyunun kırılmasını uzun zaman boyunca engellemişti.\r\nBunu söylemek her ne kadar üzücü olsa da, maalesef bu tip korsan gruplara\r\nharaçlarını vermeden, oyunları koruma altına almak mümkün değil.\u003cfont face=\"Arial, sans-serif\"\u003e\u003cspan style=\"background-color: rgb(34, 34, 34);\"\u003e\u003co:p\u003e\u003c/o:p\u003e\u003c/span\u003e\u003c/font\u003e\u003c/p\u003e",
+                  "category":null,
+                  "publisher":null,
+                  "releasedate":null,
+                  "viewcount":116,
+                  "subtitle":"Korsanlar karşısında yapımcıların eli kolu bağlı!",
+                  "searchkeywords":null,
+                  "publisheravatar":null,
+                  "relatedgames":null
+              },
+              {  
+                  "id":1000040,
+                  "title":"Saran Medya ve Riot Games Türkiye\u0027den Dev İşbirliği",
+                  "url":"saran-medya-ve-riot-games-turkiye-den-dev-isbirligi",
+                  "picture":"league-of-legends.jpg",
+                  "details":"\u003cp\u003eRiot Games Türkiye ile spor yayıncılığı pazarlamasında dünya şirketleri sıralamasında 5. olan ve yeni spor kanalı \"S Sport\" ile yayın hayatına da merhaba diyen \u0026nbsp;Saran Medya, League of Legends Türkiye Şampiyonluk Ligi’nin televizyon yayınları ile ilgili bir anlaşma imzaladılar.Yapılan anlaşmayla, Türkiye\u0027nin Premier spor kanalı S Sport, Türkiye’nin ilk profesyonel Espor Ligi League of Legends Türkiye Şampiyonluk Ligi’nin yayın haklarını satın aldı. S Sport\u0027un ayrıca 2017 yılı içinde Çin\u0027de düzenlenecek League of Legends Dünya Şampiyonası\u0027nın da \u0026nbsp;Espor tutkunlarıyla buluşturulacağı bildirildi.Saran Medya ve Riot Games Türkiye arasında yapılan iş birliği \u0026nbsp;sadece maçların yayınlanmasıyla sınırlı kalmayacak, ayrıca \u0026nbsp;haftalık karşılaşmalarda yaşanan en önemli anlar ve özetler de S Sport ekranlarında hayranlarıyla buluşacak. Bunların yanında League of Legends tüm lig karşılaşmalarıyla ilgili yorumların yapılacağı, izleyicilerin en güncel gelişmeleri takip edilebileceği özel stüdyo programları da yayınlanacak.\u003c/p\u003e\u003cp\u003e",
+                  "category":null,
+                  "publisher":null,
+                  "releasedate":null,
+                  "viewcount":109,
+                  "subtitle":"League of Legends artık Televizyonda",
+                  "searchkeywords":null,
+                  "publisheravatar":null,
+                  "relatedgames":null
               }
+
         ];
 
         let index = 0;
@@ -445,6 +533,60 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.push('news.right', element);
           }
           index++;
+        });
+
+        /////////////////////////////
+
+        const games = [
+        {  
+            "name":"Tannenberg",
+            "picture":"tannenberg-logo.jpg",
+            "url":"tannenberg",
+            "releasedate":"16.11.2017 00:00:00",
+            "background":null,
+            "genres":"Action,Shooter",
+            "developer":null,
+            "publisher":"M2H, Blackmill Games"
+        },
+        {  
+            "name":"Crackdown 3",
+            "picture":"crackdown-3-logo.jpg",
+            "url":"crackdown-3",
+            "releasedate":"7.11.2017 00:00:00",
+            "background":null,
+            "genres":"Action,Adventure,Shooter",
+            "developer":null,
+            "publisher":"Microsoft Studios"
+        },
+        {  
+            "name":"Call of Duty: WWII",
+            "picture":"call-of-duty-WWII-logo.jpg",
+            "url":"call-of-duty--wwii",
+            "releasedate":"3.11.2017 00:00:00",
+            "background":null,
+            "genres":"Action,Online,Role Playing,Shooter",
+            "developer":null,
+            "publisher":"Activision\t"
+        },
+        {  
+            "name":"Wolfenstein II: The New Colossus",
+            "picture":"wolfenstein-2-logo.jpg",
+            "url":"wolfenstein-ii--the-new-colossus",
+            "releasedate":"27.10.2017 00:00:00",
+            "background":null,
+            "genres":"Action,Shooter",
+            "developer":null,
+            "publisher":"Bethesda Softworks\t"
+        }
+        ];
+
+        games.forEach((game) => {
+          let current = {
+            "title": game.name,
+            "href": "game/" + game.url,
+            "src": "//cdn.kaldirirmi.com/images/games/" +  game.picture
+          };
+          this.push('gamelist', current);
         });
               
       }

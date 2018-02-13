@@ -31,47 +31,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       }
 
-    
-
-      #home-page{
-        @apply(--layout-horizontal);
-      }
-
-      .content-container{
-        width:100%;
-        @apply(--layout-vertical);
-      }
-
-      .content-container .top-content{
-        @apply(--layout-horizontal);
-      }
-
-      .content-container .bottom-content{
-        @apply(--layout-vertical);
-      }
-      
-
-      .content-container .top-content .left-content{
-        width: 66.66666666666666666666%;
-        @apply(--layout-vertical);
-      }
-      .content-container .top-content .right-content{
-        width: 33.33333333333333333333%;
-        @apply(--layout-vertical);
-      }
-
-     
-
-      .img-container{
-        position: relative;
-        opacity: .7;
-        transition: all ease-in-out .2s;
-      }
-      .img-container:hover{
-        opacity: 1;
-      }
-
-
       figure{
         margin: 10px; 
         box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
@@ -93,85 +52,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
 
-      #items .item{
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -ms-flex-direction: column;
-        -webkit-flex-direction: column;
-        flex-direction: column;
-        /* padding: 20px; */
-        background-color: white;
-        border: 1px solid #ddd;
-        cursor: pointer;
-        margin-bottom: 10px;
-        color: #000 !important;
-      }
-      .item .item-column{
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -ms-flex-direction: row;
-        -webkit-flex-direction: row;
-        flex-direction: row;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-      }
-      .item iron-image{
-        height: 106px;
-        width: 190px;
-        box-sizing: border-box;
-        background-color: #DDD;
-      }
-      .item .pad{
-        padding: 0 16px;
-        -ms-flex: 1 1 .000000001px;
-        -webkit-flex: 1;
-        flex: 1;
-        -webkit-flex-basis: .000000001px;
-        flex-basis: .000000001px;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -ms-flex-direction: column;
-        -webkit-flex-direction: column;
-        flex-direction: column;
-      }
-      .item .primary{
-        /* font-size: 16px; */
-        font-weight: bold;
-      }
-      .item .shortText{
-        /* font-size: 14px; */
-      }
-      .continue-item{
-        padding-top: 5px;
-        width: 100%;
-      }
-      .continue-item paper-button{
-        width: inherit;
-        font-size: 12px;
-      }
-      
-
       /* Desktops and laptops ----------- */
       @media only screen  and (min-width : 1224px) {
-        .content-container .top-content .left-content figure .img-container iron-image{
-          height: 21rem;
-        }
-        .content-container .top-content .right-content figure .img-container iron-image{
-          height: 6.9rem;
-        }
-
-        .content-container .top-content .right-content figure figcaption{
-          @apply(--layout-vertical);
-          @apply(--layout-center-center);
-          height: 50px;
-          font-size: 14px;
-          line-height: 20px;
-        }
-
+/* 
         #items .item{
           padding: 10px;
           line-height: 15px;
@@ -188,29 +71,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         .item .pad .shortText{
           font-size: 10px;
-        }
+        } */
       }
       
       /* Desktops and laptops ----------- */
       @media only screen  and (min-width : 1366px) {
-        .content-container .left-content figure .img-container iron-image{
-          height: 26rem;
-        }
-        .content-container .right-content figure .img-container iron-image{
-          height: 11rem;
-        }
       }
 
         /* Desktops and laptops ----------- */
         @media only screen  and (min-width : 1620px) {
-        .content-container .top-content .left-content figure .img-container iron-image{
-          height: 23rem;
-        }
-        .content-container .top-content .right-content figure .img-container iron-image{
-          height: 8rem;
-        }
 
-        .item iron-image{
+        /* .item iron-image{
           width: 170px;
           height: 92px;
           box-sizing: border-box;
@@ -221,17 +92,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         .item .pad .shortText{
           font-size: 14px;
-        }
+        } */
       }
 
       /* Large screens ----------- */
       @media only screen  and (min-width : 1824px) {
-        .content-container .left-content figure .img-container iron-image{
-          height: 23rem;
-        }
-        .content-container .right-content figure .img-container iron-image{
-          height: 8rem;
-        }
+       
       }
 
       .content-container{
@@ -468,13 +334,111 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
 
-
-
-
-
       iron-image{
         /* width: calc(12.5em + 1vmin); */
       }
+
+      /***************** NEWS CONTAINER ***************************/
+      #news-container{
+        @apply(--layout-horizontal);
+        margin: 10px 0px;
+        @apply(--shadow-elevation-2dp)
+      }
+
+      #news-container .main-catalog{
+        @apply(--layout-flex-9);
+        @apply(--layout-vertical);
+      }
+
+      .main-catalog .advert-catalog{
+          @apply(--layout-flex-3);
+          background: blue;
+          padding:10px;
+        }
+
+        .main-catalog .news-catalog{
+          @apply(--layout-flex-8);
+          @apply(--layout-horizontal);
+          padding:10px;
+        }
+          .main-catalog .news-catalog .big-news-catalog{
+            @apply(--layout-flex-8);
+            @apply(--layout-vertical);
+          }
+          .main-catalog .news-catalog .small-news-catalog{
+            @apply(--layout-vertical);
+            @apply(--layout-flex-4);
+            padding: 0px 10px;
+          }
+          .main-catalog .news-catalog div figure{
+            @apply(--layout-vertical);
+            width:100%;
+            height: 100%;
+          }
+          .main-catalog .news-catalog div figure a{
+            width:100%;
+            height: 100%;
+            position: relative;
+            opacity: .7;
+            transition: all ease-in-out .2s;
+          }
+
+          .main-catalog .news-catalog div figure a:hover{
+            opacity: 1;
+          }
+
+          .main-catalog .news-catalog div figure figcaption{
+            margin:0px;
+            padding: 10px;
+            @apply(--layout-vertical);
+            justify-content: center;
+          }
+
+          .main-catalog .news-catalog div figure a iron-image{
+            max-width: 100%;
+            width: 100%;
+            height: 100%;
+          }
+
+        
+
+      #news-container .side-catalog{
+        @apply(--layout-flex-4);
+        padding:10px;        
+      }
+
+      .side-catalog #items{
+        @apply(--layout-vertical);
+      }
+        .side-catalog #items .item{
+          min-height: 110px;
+          text-decoration: none;
+          color: #fff;
+          background-color: white;
+          border: 1px solid #ddd;
+          cursor: pointer;
+          margin-bottom: 10px;
+          color: #000 !important;
+          @apply(--layout-horizontal);
+        }
+          .side-catalog #items .item .item-image{
+            padding: 10px;
+            @apply(--layout-horizontal);
+            @apply(--layout-flex-4);
+          }
+          .side-catalog #items .item .item-content{
+            padding: 10px;
+            @apply(--layout-flex-8);
+            line-height: 20px;
+          }
+            .side-catalog #items .item .item-content .primary{
+              font-weight: bold;
+              padding-bottom: 5px;
+            }
+          .continue-item{
+            @apply(--layout-vertical);
+            padding-top: 5px;
+          }
 
     </style>
 <!-- 
@@ -486,47 +450,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       loading="{{loading}}"
       debounce-duration="300"></iron-ajax> -->
 
-    <div id="home-page">
-        <paper-material elevation="4" class="content-container">
-          <div class="top-content">
-              <div class="left-content">
+    <div id="news-container">
+      <paper-material elevation="4" class="main-catalog">
+        <div class="news-catalog">
+            <div class="big-news-catalog">
+                <figure>
+                  <a href="news/[[news.first.url]]">
+                      <iron-image src="[[cdn]][[news.first.picture]]" preload sizing="cover"></iron-image>
+                  </a>
+                  <figcaption>[[news.first.title]]</figcaption>
+                </figure>
+            </div>
+            <div class="small-news-catalog">
+                <template is="dom-repeat" items={{news.center}} as=item>
                   <figure>
-                    <a href="news/[[news.first.url]]">
-                      <div class="img-container">
-                          <iron-image src="[[cdn]][[news.first.picture]]" preload sizing="cover"></iron-image>
-                      </div>
-                    </a>
-                    <figcaption>[[news.first.title]]</figcaption>
+                    <a href="[[item.url]]">
+                       <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
+                    </a>             
+                    <figcaption>[[item.title]]</figcaption>
                   </figure>
-              </div>
-              <div class="right-content">
-                    <template is="dom-repeat" items={{news.center}} 
-                      as=item>
-                      <figure>
-                        <a href="[[item.url]]">
-                          <div class="img-container">
-                              <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
-                            </div>
-                        </a>             
-                        <figcaption>[[item.title]]</figcaption>
-                      </figure>
-                    </template>
-              </div>
-          </div>
-          <div class="bottom-content">
-          fsafaf
-          </div>
-          
-        </paper-material>
-        
-        <paper-material elevation="1" class="other-container">
-            <div id="items">
-              <template is="dom-repeat" items={{news.right}} 
-                as=item >
-                <div class="item">
-                    <div class="item-column">
-                        <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
-                        <div class="pad">
+                </template>
+            </div>
+        </div>
+        <div class="advert-catalog"></div>
+      </paper-material>
+      <paper-material elevation="1" class="side-catalog">
+          <div id="items">
+              <template is="dom-repeat" items={{news.right}} as=item >
+                <a class="item" href="news/[[news.first.url]]">
+                      <div class="item-image">
+                          <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
+                      </div>
+                      <div class="item-content">
                         <div class="primary">
                             [[item.title]]
                         </div>
@@ -534,16 +489,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             [[item.subtitle]]
                         </div>
                       </div>
-                    </div>
-                  </div>
+                </a>
               </template>
-              </div>
-              <div class="continue-item">
-                <paper-button raised>Devamı</paper-button>
-              </div>
-        </paper-material>
+            </div>
+            <div class="continue-item">
+              <paper-button raised>Devamı</paper-button>
+            </div>
+      </paper-material>
     </div>
-    
+
     <!-- Oyunlar -->
     <div id="game-list">
       <template is="dom-repeat" items="{{gamelist}}">
@@ -749,8 +703,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       </div>
     </div>
-
-
 
 
   </template>

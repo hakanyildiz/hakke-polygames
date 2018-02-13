@@ -11,8 +11,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-request.html">
 
-
 <link rel="import" href="shared-styles.html">
+
+<!-- Home Subpages Imports -->
+<link rel="import" href="./home/home-news.html">
+<link rel="import" href="./home/home-games.html">
+
+<!-- Model Imports --> 
+<link rel="import" href="./model/news-item.html">
+<link rel="import" href="./model/game-item.html">
+
 
 <link rel="import" href="kal-home-gameitem.html">
 
@@ -25,27 +33,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px;
         /* height: 100vh; */
         /* overflow-y: scroll !important; */
-        
         font-size: calc(0.6em + (1.3125 - 1) * ((100vw - 20em) / (80 - 20)));
         line-height: calc(1em + (1.8 - 1.4) * ((100vw - 20em) / (80 - 20)));
 
       }
 
-      figure{
-        margin: 10px; 
+      figure {
+        margin: 10px;
         box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-                    0 1px 10px 0 rgba(0, 0, 0, 0.12),
-                    0 2px 4px -1px rgba(0, 0, 0, 0.4);
+        0 1px 10px 0 rgba(0, 0, 0, 0.12),
+        0 2px 4px -1px rgba(0, 0, 0, 0.4);
       }
 
-      figcaption{
+      figcaption {
         margin-left: 10px;
         margin-bottom: 10px;
         color: #fff;
         padding-right: 20px;
       }
-      
-      iron-image{
+
+      iron-image {
         max-width: 100%;
         width: 100%;
         /* height: 12.5em; */
@@ -53,8 +60,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
       /* Desktops and laptops ----------- */
-      @media only screen  and (min-width : 1224px) {
-/* 
+
+      @media only screen and (min-width: 1224px) {
+        /* 
         #items .item{
           padding: 10px;
           line-height: 15px;
@@ -73,13 +81,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           font-size: 10px;
         } */
       }
-      
-      /* Desktops and laptops ----------- */
-      @media only screen  and (min-width : 1366px) {
-      }
 
-        /* Desktops and laptops ----------- */
-        @media only screen  and (min-width : 1620px) {
+      /* Desktops and laptops ----------- */
+
+      @media only screen and (min-width: 1366px) {}
+
+      /* Desktops and laptops ----------- */
+
+      @media only screen and (min-width: 1620px) {
 
         /* .item iron-image{
           width: 170px;
@@ -96,68 +105,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       /* Large screens ----------- */
-      @media only screen  and (min-width : 1824px) {
-       
-      }
 
-      .content-container{
+      @media only screen and (min-width: 1824px) {}
+
+      .content-container {
         @apply(--layout-flex-8);
       }
-      .other-container{
+
+      .other-container {
         @apply(--layout-flex-4);
       }
 
-      /* GAMELIST */
-      #game-list{
-        @apply(--layout-horizontal);
-        @apply(--layout-center-center);
-
-        margin: 10px 0px;
-        flex-flow: row wrap;
-        width: 100%;
-        height: auto;        
-      }
-
-      #game-list kal-home-gameitem{
-        /* width: 21.2222222%;
-        margin: 7px; */
-        width: 25%;
-      }
+     
 
 
 
       /* Extras Container */
 
-      #extras-container{
+      #extras-container {
         /* height: 400px; */
         @apply(--layout-horizontal);
       }
-      
+
       #extras-container #magnificest-catalog,
-      #extras-container #release-catalog{
+      #extras-container #release-catalog {
         @apply(--layout-flex-3);
       }
 
-      #extras-container #google-ads{
+      #extras-container #google-ads {
         @apply(--layout-flex-2);
-        background:blue;
+        background: blue;
       }
 
-      #extras-container #wizard-catalog{
+      #extras-container #wizard-catalog {
         @apply(--layout-flex-4);
       }
 
       /************* MAGNIFICENT CATALOG ***********************/
-      #magnificest-catalog{
+
+      #magnificest-catalog {
         @apply(--layout-vertical);
       }
-      
-      #magnificest-catalog .mag-header{
+
+      #magnificest-catalog .mag-header {
         border-bottom: 1px solid #ff7800;
         @apply(--layout-horizontal);
       }
 
-      .mag-header .mag-title{
+      .mag-header .mag-title {
         margin: 0px 10px;
         padding: 10px;
         font-weight: 600;
@@ -170,51 +165,56 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background: #ff7800;
       }
 
-      .mag-body{
+      .mag-body {
         @apply(--layout-vertical);
-        margin:10px 0px;
+        margin: 10px 0px;
       }
-      .mag-body .mag-game{
+
+      .mag-body .mag-game {
         width: 100%;
         height: 100px;
         margin: 5px 0px;
         position: relative;
         cursor: pointer
       }
-      .mag-body .mag-game iron-image{
+
+      .mag-body .mag-game iron-image {
         width: 100%;
         height: 100%;
       }
-      .mag-body .mag-game .mag-game-detail{
+
+      .mag-body .mag-game .mag-game-detail {
         position: absolute;
         /* height: 30px; */
         margin-top: -40px;
         /* margin-left: 10px; */
         @apply(--layout-horizontal);
         @apply(--layout-center);
-        width:100%;
+        width: 100%;
       }
-      
-      .mag-body .mag-game .mag-game-detail .game-title{
-        @apply(--layout-flex-3);
-        margin-left:4px;
-      }
-      .mag-body .mag-game .mag-game-detail .game-score{
-                @apply(--layout-flex-1);
-                background: #ff7800;
-                color: #fff;
-                border: 1px solid #fff;
-                border-radius: 33px;
-                padding:4px;
-                margin-right:4px;
-            }
 
-      .mag-footer{
+      .mag-body .mag-game .mag-game-detail .game-title {
+        @apply(--layout-flex-3);
+        margin-left: 4px;
+      }
+
+      .mag-body .mag-game .mag-game-detail .game-score {
+        @apply(--layout-flex-1);
+        background: #ff7800;
+        color: #fff;
+        border: 1px solid #fff;
+        border-radius: 33px;
+        padding: 4px;
+        margin-right: 4px;
+      }
+
+      .mag-footer {
         @apply(--layout-flex);
         @apply(--layout-center-center);
         margin: 0 auto;
       }
-      .mag-footer .more-button{
+
+      .mag-footer .more-button {
         background: #ff7800;
         text-transform: uppercase;
         color: #222;
@@ -229,219 +229,132 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
       /***************** WIZARD CATALOG ***************************/
-      #wizard-catalog{
+
+      #wizard-catalog {
         @apply(--layout-vertical);
       }
 
-      #wizard-catalog .wizard-card{
+      #wizard-catalog .wizard-card {
         @apply(--layout-vertical);
         @apply(--shadow-elevation-4dp);
       }
 
-      .wizard-card .wizard-card-header{
+      .wizard-card .wizard-card-header {
         @apply(--layout-horizontal);
         @apply(--layout-center-center);
         border-bottom: 3px solid #ff7800;
         height: 60px;
       }
-      .wizard-card .wizard-card-header .header-title{
+
+      .wizard-card .wizard-card-header .header-title {
         @apply(--layout-horizontal);
         @apply(--layout-flex-9);
         padding: 10px;
       }
-      .wizard-card .wizard-card-header .header-title .game-title{
+
+      .wizard-card .wizard-card-header .header-title .game-title {
         font-size: 17px;
         font-weight: 600;
       }
-      .wizard-card .wizard-card-header .header-title .game-category{
+
+      .wizard-card .wizard-card-header .header-title .game-category {
         font-size: 13px;
         font-weight: 300;
       }
-      .wizard-card .wizard-card-header .header-icons{
+
+      .wizard-card .wizard-card-header .header-icons {
         @apply(--layout-horizontal);
         @apply(--layout-flex-3);
       }
-      .wizard-card .wizard-card-header .header-icons img{
+
+      .wizard-card .wizard-card-header .header-icons img {
         height: 5%;
         width: 5%;
       }
 
-      .wizard-card .wizard-card-body{
+      .wizard-card .wizard-card-body {
         @apply(--layout-horizontal);
-        padding:10px;
-        max-height:135px;
+        padding: 10px;
+        max-height: 135px;
       }
-      .wizard-card .wizard-card-body .game-picture{
+
+      .wizard-card .wizard-card-body .game-picture {
         opacity: 0.7;
         transition: all ease-in-out 0.3s;
         @apply(--layout-flex-3);
       }
-      .wizard-card .wizard-card-body .game-picture iron-image{
+
+      .wizard-card .wizard-card-body .game-picture iron-image {
         height: 100%;
         width: 100%;
       }
-      .wizard-card .wizard-card-body .game-detail{
+
+      .wizard-card .wizard-card-body .game-detail {
         @apply(--layout-flex-9);
-        padding-left:10px;
+        padding-left: 10px;
       }
-   
+
 
       /**************** RELEASE CATALOG **************************/
-      #release-catalog{
+
+      #release-catalog {
         @apply(--layout-vertical);
       }
 
-      #release-catalog .google-adv{
+      #release-catalog .google-adv {
         @apply(--layout-flex-6);
-        background:blue;
+        background: blue;
       }
-      #release-catalog .release-card{
+
+      #release-catalog .release-card {
         @apply(--layout-flex-6);
         @apply(--shadow-elevation-6dp);
         background: #181818;
       }
 
-      .release-card .release-card-header{
+      .release-card .release-card-header {
         height: 50px;
         @apply(--layout-vertical);
-        @apply(--layout-center-center);        
+        @apply(--layout-center-center);
         align-items: left;
-        padding:  5px;
+        padding: 5px;
         font-size: 1.3em;
         letter-spacing: 1.2px;
       }
 
-      .release-card .release-card-header h5{
-        margin:0;
+      .release-card .release-card-header h5 {
+        margin: 0;
       }
-      .release-card .release-card-body{
+
+      .release-card .release-card-body {
         @apply(--layout-vertical);
-      } 
-      .release-card .release-card-body .game:nth-of-type(2n+1){
+      }
+
+      .release-card .release-card-body .game:nth-of-type(2n+1) {
         background: #222;
       }
-      .release-card .release-card-body .game{
+
+      .release-card .release-card-body .game {
         @apply(--layout-horizontal);
         padding: 1px 0px 1px 10px;
         height: 30px;
       }
-      .release-card .release-card-body .game .game-title{
+
+      .release-card .release-card-body .game .game-title {
         @apply(--layout-flex-9);
       }
-      .release-card .release-card-body .game .game-release{
+
+      .release-card .release-card-body .game .game-release {
         @apply(--layout-flex-3);
         font-size: 0.8rem;
       }
 
 
-      iron-image{
+      iron-image {
         /* width: calc(12.5em + 1vmin); */
       }
-
-      /***************** NEWS CONTAINER ***************************/
-      #news-container{
-        @apply(--layout-horizontal);
-        margin: 10px 0px;
-        @apply(--shadow-elevation-2dp)
-      }
-
-      #news-container .main-catalog{
-        @apply(--layout-flex-9);
-        @apply(--layout-vertical);
-      }
-
-      .main-catalog .advert-catalog{
-          @apply(--layout-flex-3);
-          background: blue;
-          padding:10px;
-        }
-
-        .main-catalog .news-catalog{
-          @apply(--layout-flex-8);
-          @apply(--layout-horizontal);
-          padding:10px;
-        }
-          .main-catalog .news-catalog .big-news-catalog{
-            @apply(--layout-flex-8);
-            @apply(--layout-vertical);
-          }
-          .main-catalog .news-catalog .small-news-catalog{
-            @apply(--layout-vertical);
-            @apply(--layout-flex-4);
-            padding: 0px 10px;
-          }
-          .main-catalog .news-catalog div figure{
-            @apply(--layout-vertical);
-            width:100%;
-            height: 100%;
-          }
-          .main-catalog .news-catalog div figure a{
-            width:100%;
-            height: 100%;
-            position: relative;
-            opacity: .7;
-            transition: all ease-in-out .2s;
-          }
-
-          .main-catalog .news-catalog div figure a:hover{
-            opacity: 1;
-          }
-
-          .main-catalog .news-catalog div figure figcaption{
-            margin:0px;
-            padding: 10px;
-            @apply(--layout-vertical);
-            justify-content: center;
-          }
-
-          .main-catalog .news-catalog div figure a iron-image{
-            max-width: 100%;
-            width: 100%;
-            height: 100%;
-          }
-
-        
-
-      #news-container .side-catalog{
-        @apply(--layout-flex-4);
-        padding:10px;        
-      }
-
-      .side-catalog #items{
-        @apply(--layout-vertical);
-      }
-        .side-catalog #items .item{
-          min-height: 110px;
-          text-decoration: none;
-          color: #fff;
-          background-color: white;
-          border: 1px solid #ddd;
-          cursor: pointer;
-          margin-bottom: 10px;
-          color: #000 !important;
-          @apply(--layout-horizontal);
-        }
-          .side-catalog #items .item .item-image{
-            padding: 10px;
-            @apply(--layout-horizontal);
-            @apply(--layout-flex-4);
-          }
-          .side-catalog #items .item .item-content{
-            padding: 10px;
-            @apply(--layout-flex-8);
-            line-height: 20px;
-          }
-            .side-catalog #items .item .item-content .primary{
-              font-weight: bold;
-              padding-bottom: 5px;
-            }
-          .continue-item{
-            @apply(--layout-vertical);
-            padding-top: 5px;
-          }
-
     </style>
-<!-- 
+    <!-- 
     <iron-ajax
       id="ajax"
       url="http://localhost:8081/data.json"
@@ -450,60 +363,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       loading="{{loading}}"
       debounce-duration="300"></iron-ajax> -->
 
-    <div id="news-container">
-      <paper-material elevation="4" class="main-catalog">
-        <div class="news-catalog">
-            <div class="big-news-catalog">
-                <figure>
-                  <a href="news/[[news.first.url]]">
-                      <iron-image src="[[cdn]][[news.first.picture]]" preload sizing="cover"></iron-image>
-                  </a>
-                  <figcaption>[[news.first.title]]</figcaption>
-                </figure>
-            </div>
-            <div class="small-news-catalog">
-                <template is="dom-repeat" items={{news.center}} as=item>
-                  <figure>
-                    <a href="[[item.url]]">
-                       <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
-                    </a>             
-                    <figcaption>[[item.title]]</figcaption>
-                  </figure>
-                </template>
-            </div>
-        </div>
-        <div class="advert-catalog"></div>
-      </paper-material>
-      <paper-material elevation="1" class="side-catalog">
-          <div id="items">
-              <template is="dom-repeat" items={{news.right}} as=item >
-                <a class="item" href="news/[[news.first.url]]">
-                      <div class="item-image">
-                          <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
-                      </div>
-                      <div class="item-content">
-                        <div class="primary">
-                            [[item.title]]
-                        </div>
-                        <div class="shortText">
-                            [[item.subtitle]]
-                        </div>
-                      </div>
-                </a>
-              </template>
-            </div>
-            <div class="continue-item">
-              <paper-button raised>Devamı</paper-button>
-            </div>
-      </paper-material>
-    </div>
+    <home-news></home-news>
 
-    <!-- Oyunlar -->
-    <div id="game-list">
-      <template is="dom-repeat" items="{{gamelist}}">
-          <kal-home-gameitem game="[[item]]"></kal-home-gameitem>
-      </template>
-    </div>
+    <home-games></home-games>
+
+   
 
 
     <!-- EXTRAS -->
@@ -518,67 +382,67 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="mag-game">
             <iron-image src="//cdn.kaldirirmi.com/images/games/wolfenstein-2-logo.jpg" preload sizing="cover"></iron-image>
             <div class="mag-game-detail">
-                <span class="game-title">
-                    Wolfenstein II
-                </span>
-                <div class="game-score">
-                  9.9
-                </div>
+              <span class="game-title">
+                Wolfenstein II
+              </span>
+              <div class="game-score">
+                9.9
+              </div>
             </div>
             <paper-ripple></paper-ripple>
           </div>
 
           <div class="mag-game">
-              <iron-image src="//cdn.kaldirirmi.com/images/games/wolfenstein-2-logo.jpg" preload sizing="cover"></iron-image>
-              <div class="mag-game-detail">
-                  <span class="game-title">
-                      Wolfenstein II
-                  </span>
-                  <div class="game-score">
-                    9.9
-                  </div>
+            <iron-image src="//cdn.kaldirirmi.com/images/games/wolfenstein-2-logo.jpg" preload sizing="cover"></iron-image>
+            <div class="mag-game-detail">
+              <span class="game-title">
+                Wolfenstein II
+              </span>
+              <div class="game-score">
+                9.9
               </div>
-              <paper-ripple></paper-ripple>
             </div>
+            <paper-ripple></paper-ripple>
+          </div>
 
-            <div class="mag-game">
-                <iron-image src="//cdn.kaldirirmi.com/images/games/wolfenstein-2-logo.jpg" preload sizing="cover"></iron-image>
-                <div class="mag-game-detail">
-                    <span class="game-title">
-                        Wolfenstein II
-                    </span>
-                    <div class="game-score">
-                      9.9
-                    </div>
-                </div>
-                <paper-ripple></paper-ripple>
+          <div class="mag-game">
+            <iron-image src="//cdn.kaldirirmi.com/images/games/wolfenstein-2-logo.jpg" preload sizing="cover"></iron-image>
+            <div class="mag-game-detail">
+              <span class="game-title">
+                Wolfenstein II
+              </span>
+              <div class="game-score">
+                9.9
               </div>
+            </div>
+            <paper-ripple></paper-ripple>
+          </div>
 
-              <div class="mag-game">
-                  <iron-image src="//cdn.kaldirirmi.com/images/games/wolfenstein-2-logo.jpg" preload sizing="cover"></iron-image>
-                  <div class="mag-game-detail">
-                      <span class="game-title">
-                          Wolfenstein II
-                      </span>
-                      <div class="game-score">
-                        9.9
-                      </div>
-                  </div>
-                  <paper-ripple></paper-ripple>
-                </div>
+          <div class="mag-game">
+            <iron-image src="//cdn.kaldirirmi.com/images/games/wolfenstein-2-logo.jpg" preload sizing="cover"></iron-image>
+            <div class="mag-game-detail">
+              <span class="game-title">
+                Wolfenstein II
+              </span>
+              <div class="game-score">
+                9.9
+              </div>
+            </div>
+            <paper-ripple></paper-ripple>
+          </div>
 
-                <div class="mag-game">
-                    <iron-image src="//cdn.kaldirirmi.com/images/games/wolfenstein-2-logo.jpg" preload sizing="cover"></iron-image>
-                    <div class="mag-game-detail">
-                        <span class="game-title">
-                            Wolfenstein II
-                        </span>
-                        <div class="game-score">
-                          9.9
-                        </div>
-                    </div>
-                    <paper-ripple></paper-ripple>
-                </div>
+          <div class="mag-game">
+            <iron-image src="//cdn.kaldirirmi.com/images/games/wolfenstein-2-logo.jpg" preload sizing="cover"></iron-image>
+            <div class="mag-game-detail">
+              <span class="game-title">
+                Wolfenstein II
+              </span>
+              <div class="game-score">
+                9.9
+              </div>
+            </div>
+            <paper-ripple></paper-ripple>
+          </div>
         </div>
         <div class="mag-footer">
           <paper-button raised class="more-button">Daha Fazlası</paper-button>
@@ -595,68 +459,68 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <span class="game-category">Sports</span>
             </div>
             <div class="header-icons">
-                <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/cpu-green.svg">
-                <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/gpu-yellow.svg">
-                <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/ram-green.svg">
-                <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/hd-yellow.svg">
+              <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/cpu-green.svg">
+              <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/gpu-yellow.svg">
+              <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/ram-green.svg">
+              <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/hd-yellow.svg">
             </div>
           </div>
           <div class="wizard-card-body">
             <div class="game-picture">
-                <iron-image src="//cdn.kaldirirmi.com/images/games/just-cause-3-logo.jpg" preload sizing="cover"></iron-image>
+              <iron-image src="//cdn.kaldirirmi.com/images/games/just-cause-3-logo.jpg" preload sizing="cover"></iron-image>
             </div>
             <div class="game-detail">
-                <p>Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir.</p>
-                <paper-button raised>Sistem Sihirbazını Çalıştır</paper-button>
+              <p>Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir.</p>
+              <paper-button raised>Sistem Sihirbazını Çalıştır</paper-button>
             </div>
           </div>
         </div>
         <div class="wizard-card">
-            <div class="wizard-card-header">
-              <div class="header-title">
-                <span class="game-title">Project Cars 2 /</span>
-                <span class="game-category">Sports</span>
-              </div>
-              <div class="header-icons">
-                  <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/cpu-green.svg">
-                  <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/gpu-yellow.svg">
-                  <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/ram-green.svg">
-                  <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/hd-yellow.svg">
-              </div>
+          <div class="wizard-card-header">
+            <div class="header-title">
+              <span class="game-title">Project Cars 2 /</span>
+              <span class="game-category">Sports</span>
             </div>
-            <div class="wizard-card-body">
-              <div class="game-picture">
-                  <iron-image src="//cdn.kaldirirmi.com/images/games/just-cause-3-logo.jpg" preload sizing="cover"></iron-image>
-              </div>
-              <div class="game-detail">
-                  <p>Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir.</p>
-                  <paper-button raised>Sistem Sihirbazını Çalıştır</paper-button>
-              </div>
+            <div class="header-icons">
+              <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/cpu-green.svg">
+              <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/gpu-yellow.svg">
+              <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/ram-green.svg">
+              <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/hd-yellow.svg">
             </div>
           </div>
-          <div class="wizard-card">
-              <div class="wizard-card-header">
-                <div class="header-title">
-                  <span class="game-title">Project Cars 2 /</span>
-                  <span class="game-category">Sports</span>
-                </div>
-                <div class="header-icons">
-                    <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/cpu-green.svg">
-                    <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/gpu-yellow.svg">
-                    <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/ram-green.svg">
-                    <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/hd-yellow.svg">
-                </div>
-              </div>
-              <div class="wizard-card-body">
-                <div class="game-picture">
-                    <iron-image src="//cdn.kaldirirmi.com/images/games/just-cause-3-logo.jpg" preload sizing="cover"></iron-image>
-                </div>
-                <div class="game-detail">
-                    <p>Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir.</p>
-                    <paper-button raised>Sistem Sihirbazını Çalıştır</paper-button>
-                </div>
-              </div>
+          <div class="wizard-card-body">
+            <div class="game-picture">
+              <iron-image src="//cdn.kaldirirmi.com/images/games/just-cause-3-logo.jpg" preload sizing="cover"></iron-image>
             </div>
+            <div class="game-detail">
+              <p>Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir.</p>
+              <paper-button raised>Sistem Sihirbazını Çalıştır</paper-button>
+            </div>
+          </div>
+        </div>
+        <div class="wizard-card">
+          <div class="wizard-card-header">
+            <div class="header-title">
+              <span class="game-title">Project Cars 2 /</span>
+              <span class="game-category">Sports</span>
+            </div>
+            <div class="header-icons">
+              <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/cpu-green.svg">
+              <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/gpu-yellow.svg">
+              <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/ram-green.svg">
+              <img class="systemcheck-images" src="https://kaldirirmi.com/assets/img/gamepage-icon/colorful/hd-yellow.svg">
+            </div>
+          </div>
+          <div class="wizard-card-body">
+            <div class="game-picture">
+              <iron-image src="//cdn.kaldirirmi.com/images/games/just-cause-3-logo.jpg" preload sizing="cover"></iron-image>
+            </div>
+            <div class="game-detail">
+              <p>Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir.</p>
+              <paper-button raised>Sistem Sihirbazını Çalıştır</paper-button>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="release-catalog">
         <div class="google-adv"></div>
@@ -665,42 +529,74 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <h5>OYUN ÇIKIŞ TARİHLERİ</h5>
           </div>
           <div class="release-card-body">
-              <div class="game">
-                  <div class="game-title"><span>Metal Gear Survive</span></div>
-                  <div class="game-release"><span>Feb-13-2018</span></div>
+            <div class="game">
+              <div class="game-title">
+                <span>Metal Gear Survive</span>
               </div>
-              <div class="game">
-                  <div class="game-title"><span>Metal Gear Survive</span></div>
-                  <div class="game-release"><span>Feb-13-2018</span></div>
+              <div class="game-release">
+                <span>Feb-13-2018</span>
               </div>
-              <div class="game">
-                  <div class="game-title"><span>Metal Gear Survive</span></div>
-                  <div class="game-release"><span>Feb-13-2018</span></div>
+            </div>
+            <div class="game">
+              <div class="game-title">
+                <span>Metal Gear Survive</span>
               </div>
-              <div class="game">
-                  <div class="game-title"><span>Metal Gear Survive</span></div>
-                  <div class="game-release"><span>Feb-13-2018</span></div>
+              <div class="game-release">
+                <span>Feb-13-2018</span>
               </div>
-              <div class="game">
-                  <div class="game-title"><span>Metal Gear Survive</span></div>
-                  <div class="game-release"><span>Feb-13-2018</span></div>
-              </div>  
-              <div class="game">
-                  <div class="game-title"><span>Metal Gear Survive</span></div>
-                  <div class="game-release"><span>Feb-13-2018</span></div>
-              </div>  
-              <div class="game">
-                  <div class="game-title"><span>Metal Gear Survive</span></div>
-                  <div class="game-release"><span>Feb-13-2018</span></div>
-              </div>  
-              <div class="game">
-                  <div class="game-title"><span>Metal Gear Survive</span></div>
-                  <div class="game-release"><span>Feb-13-2018</span></div>
-              </div>  
-              
+            </div>
+            <div class="game">
+              <div class="game-title">
+                <span>Metal Gear Survive</span>
+              </div>
+              <div class="game-release">
+                <span>Feb-13-2018</span>
+              </div>
+            </div>
+            <div class="game">
+              <div class="game-title">
+                <span>Metal Gear Survive</span>
+              </div>
+              <div class="game-release">
+                <span>Feb-13-2018</span>
+              </div>
+            </div>
+            <div class="game">
+              <div class="game-title">
+                <span>Metal Gear Survive</span>
+              </div>
+              <div class="game-release">
+                <span>Feb-13-2018</span>
+              </div>
+            </div>
+            <div class="game">
+              <div class="game-title">
+                <span>Metal Gear Survive</span>
+              </div>
+              <div class="game-release">
+                <span>Feb-13-2018</span>
+              </div>
+            </div>
+            <div class="game">
+              <div class="game-title">
+                <span>Metal Gear Survive</span>
+              </div>
+              <div class="game-release">
+                <span>Feb-13-2018</span>
+              </div>
+            </div>
+            <div class="game">
+              <div class="game-title">
+                <span>Metal Gear Survive</span>
+              </div>
+              <div class="game-release">
+                <span>Feb-13-2018</span>
+              </div>
+            </div>
+
           </div>
         </div>
-      
+
       </div>
     </div>
 
@@ -716,34 +612,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         */
       static get properties() {
         return {
-          cdn : {
-            type: String,
-            value: 'https://cdn.kaldirirmi.com/images/news/',
-          },
-          loading: {
-            type: Boolean,
-            notify: true
-          },
-          content: {
-            type: Array,
-            value: [],
-            notify: true
-          },
-          news: {
-            type: Object,
-            value: function(){
-              return {
-                first: null,
-                center: [],
-                right: []
-              }
-            }
-          },
-          gamelist: {
-            type: Array,
-            value: [],
-            notify: true
-          }
+         
         };
       }
 
@@ -755,201 +624,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         */
       connectedCallback() {
         super.connectedCallback();
-      
-        const news = [
-              {  
-                  "id":1000094,
-                  "title":"Yükselme Ligi 2017 Yaz Mevsimi Maçları Sona Erdi",
-                  "url":"yukselme-ligi-2017-yaz-mevsimi-maclari-sona-erdi",
-                  "picture":"yukselme-ligi-final.jpg",
-                  "details":"",
-                  "category":null,
-                  "publisher":null,
-                  "releasedate":null,
-                  "viewcount":126,
-                  "subtitle":"Sürpriz sonuçlar geldi, Galatasaray elindeki fırsatı değerlendiremedi.",
-                  "searchkeywords":null,
-                  "publisheravatar":null,
-                  "relatedgames":null
-              },
-              {  
-                  "id":1000093,
-                  "title":"Playerunknown’s Battlegrounds’un Haftalık Güncellemesi Yayınlanacak",
-                  "url":"playerunknown’s-battlegrounds’un-haftalik-guncellemesi-yayinlanacak",
-                  "picture":"pubg-16-hafta-update.jpg",
-                  "details":"",
-                  "category":null,
-                  "publisher":null,
-                  "releasedate":null,
-                  "viewcount":148,
-                  "subtitle":"16.hafta güncellemesinde birçok sorun düzeltiliyor",
-                  "searchkeywords":null,
-                  "publisheravatar":null,
-                  "relatedgames":null
-              },
-              {  
-                  "id":1000092,
-                  "title":"Steam’de Köklü Değişiklikler Bizi Bekliyor",
-                  "url":"steam’de-koklu-degisiklikler-bizi-bekliyor",
-                  "picture":"steam-logo.jpg",
-                  "details":"",
-                  "category":null,
-                  "publisher":null,
-                  "releasedate":null,
-                  "viewcount":114,
-                  "subtitle":"İşte değişiklikler…",
-                  "searchkeywords":null,
-                  "publisheravatar":null,
-                  "relatedgames":null
-              },
-              {  
-                  "id":1000091,
-                  "title":"Playerunknown’s Battlegrounds’un Tam Sürümü Ertelendi",
-                  "url":"playerunknown’s-battlegrounds’un-tam-surumu-ertelendi",
-                  "picture":"pubg-haber.jpg",
-                  "details":"",
-                  "category":null,
-                  "publisher":null,
-                  "releasedate":null,
-                  "viewcount":132,
-                  "subtitle":"Tam sürüme 2017 yılının sonunda geçilmesi planlanıyor!",
-                  "searchkeywords":null,
-                  "publisheravatar":null,
-                  "relatedgames":null
-              },
-              {  
-                  "id":1000090,
-                  "title":"Assassin’s Creed Origins ne kadar büyük olacak?",
-                  "url":"assassin’s-creed-origins-ne-kadar-buyuk-olacak-",
-                  "picture":"assassisns-creed-origins-haber.jpg",
-                  "details":"",
-                  "category":null,
-                  "publisher":null,
-                  "releasedate":null,
-                  "viewcount":117,
-                  "subtitle":"Yönetmeni Ashraf Ismail röportajında açıkladı",
-                  "searchkeywords":null,
-                  "publisheravatar":null,
-                  "relatedgames":null
-              },
-              {  
-                  "id":1000089,
-                  "title":"LOL Evinde",
-                  "url":"lol-evinde",
-                  "picture":"server-relocation-final-merged-fullsize.jpg",
-                  "details":"",
-                  "category":null,
-                  "publisher":null,
-                  "releasedate":null,
-                  "viewcount":136,
-                  "subtitle":"Şimdi Faker Düşünsün !",
-                  "searchkeywords":null,
-                  "publisheravatar":null,
-                  "relatedgames":null
-              },
-              {  
-                  "id":1000042,
-                  "title":"Mass Effect Andromeda Korsana Yenik Düştü",
-                  "url":"mass-effect-andromeda-korsana-yenik-dustu",
-                  "picture":"masseffectandromeda.jpg",
-                  "details":"\u003cp style=\"background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;\"\u003eElectronic\r\nArts\u0026nbsp;ve\u0026nbsp;Bioware\u0026nbsp;işbirliği ile geliştirilen\u0026nbsp;Mass Effect\r\nAndromeda\u0026nbsp;yaklaşık 2 hafta önce, PC, Playstation 4 ve Xbox One’da eş\r\nzamanlı olarak satışa sunuldu. Hikaye tabanlı bir oyun olan Mass Efffect\r\nAndromeda, maalesef PC platformunda pek de parlak bir grafik çizemedi. PC\r\noyuncularının genel itibariyle, hikaye tabanlı oyunları korsan olarak oynamayı\r\ntercih etmesi, en büyük neden olarak gösterilebilir.Bioware,\u0026nbsp;Mass Effect\r\nAndromeda’da\u0026nbsp;Denuvo\u0026nbsp;isimli DRM koruma sistemini kullanıyordu. Bu\r\nsistem Resident Evil 7’de de kullanılmış ve onda da oyuncular 1 haftadan kısa\r\nbir sürede kırmayı becermişlerdi. Kendilerinin başına da aynı şeyin gelmesinden\r\nkorkan geliştiriciler pek de haksız çıkmadı.Mass Effect Andromeda\u0026nbsp;da bu\r\nduruma yalnızca 13 gün dayanabildi. Yapımcı, Denuvo kalkanlarının devre dışı\r\nbırakıldığını ve Mass Effect Andromeda’nın “crack” dosyasının büyük bir\r\nbölümünün tamamlandığını açıkladı.İşin aslına bakarsak, korsanları etkisiz\r\nbırakmanın yolu, oyunu kıran topluluklara bir nevi rüşvet vermekten geçiyor. Bu\r\nyolun yadsınamaz bir gerçek olduğunu kabul eden EA daha önceleri FIFA serisinde\r\nkorsanlarla anlaşmış ve oyunun kırılmasını uzun zaman boyunca engellemişti.\r\nBunu söylemek her ne kadar üzücü olsa da, maalesef bu tip korsan gruplara\r\nharaçlarını vermeden, oyunları koruma altına almak mümkün değil.\u003cfont face=\"Arial, sans-serif\"\u003e\u003cspan style=\"background-color: rgb(34, 34, 34);\"\u003e\u003co:p\u003e\u003c/o:p\u003e\u003c/span\u003e\u003c/font\u003e\u003c/p\u003e",
-                  "category":null,
-                  "publisher":null,
-                  "releasedate":null,
-                  "viewcount":116,
-                  "subtitle":"Korsanlar karşısında yapımcıların eli kolu bağlı!",
-                  "searchkeywords":null,
-                  "publisheravatar":null,
-                  "relatedgames":null
-              },
-              {  
-                  "id":1000040,
-                  "title":"Saran Medya ve Riot Games Türkiye\u0027den Dev İşbirliği",
-                  "url":"saran-medya-ve-riot-games-turkiye-den-dev-isbirligi",
-                  "picture":"league-of-legends.jpg",
-                  "details":"\u003cp\u003eRiot Games Türkiye ile spor yayıncılığı pazarlamasında dünya şirketleri sıralamasında 5. olan ve yeni spor kanalı \"S Sport\" ile yayın hayatına da merhaba diyen \u0026nbsp;Saran Medya, League of Legends Türkiye Şampiyonluk Ligi’nin televizyon yayınları ile ilgili bir anlaşma imzaladılar.Yapılan anlaşmayla, Türkiye\u0027nin Premier spor kanalı S Sport, Türkiye’nin ilk profesyonel Espor Ligi League of Legends Türkiye Şampiyonluk Ligi’nin yayın haklarını satın aldı. S Sport\u0027un ayrıca 2017 yılı içinde Çin\u0027de düzenlenecek League of Legends Dünya Şampiyonası\u0027nın da \u0026nbsp;Espor tutkunlarıyla buluşturulacağı bildirildi.Saran Medya ve Riot Games Türkiye arasında yapılan iş birliği \u0026nbsp;sadece maçların yayınlanmasıyla sınırlı kalmayacak, ayrıca \u0026nbsp;haftalık karşılaşmalarda yaşanan en önemli anlar ve özetler de S Sport ekranlarında hayranlarıyla buluşacak. Bunların yanında League of Legends tüm lig karşılaşmalarıyla ilgili yorumların yapılacağı, izleyicilerin en güncel gelişmeleri takip edilebileceği özel stüdyo programları da yayınlanacak.\u003c/p\u003e\u003cp\u003e",
-                  "category":null,
-                  "publisher":null,
-                  "releasedate":null,
-                  "viewcount":109,
-                  "subtitle":"League of Legends artık Televizyonda",
-                  "searchkeywords":null,
-                  "publisheravatar":null,
-                  "relatedgames":null
-              }
 
-        ];
+        
 
-        let index = 0;
-        news.forEach(element => {
-          if(index == 0){
-            this.set('news.first', element);
-          }
-          else if(index >= 1 && index <= 2 ){
-            this.push('news.center', element);
-          }
-          else{
-            this.push('news.right', element);
-          }
-          index++;
-        });
-
-        /////////////////////////////
-
-        const games = [
-        {  
-            "name":"Tannenberg",
-            "picture":"tannenberg-logo.jpg",
-            "url":"tannenberg",
-            "releasedate":"16.11.2017 00:00:00",
-            "background":null,
-            "genres":"Action,Shooter",
-            "developer":null,
-            "publisher":"M2H, Blackmill Games"
-        },
-        {  
-            "name":"Crackdown 3",
-            "picture":"crackdown-3-logo.jpg",
-            "url":"crackdown-3",
-            "releasedate":"7.11.2017 00:00:00",
-            "background":null,
-            "genres":"Action,Adventure,Shooter",
-            "developer":null,
-            "publisher":"Microsoft Studios"
-        },
-        {  
-            "name":"Call of Duty: WWII",
-            "picture":"call-of-duty-WWII-logo.jpg",
-            "url":"call-of-duty--wwii",
-            "releasedate":"3.11.2017 00:00:00",
-            "background":null,
-            "genres":"Action,Online,Role Playing,Shooter",
-            "developer":null,
-            "publisher":"Activision\t"
-        },
-        {  
-            "name":"Wolfenstein II: The New Colossus",
-            "picture":"wolfenstein-2-logo.jpg",
-            "url":"wolfenstein-ii--the-new-colossus",
-            "releasedate":"27.10.2017 00:00:00",
-            "background":null,
-            "genres":"Action,Shooter",
-            "developer":null,
-            "publisher":"Bethesda Softworks\t"
-        }
-        ];
-
-        games.forEach((game) => {
-          let current = {
-            "title": game.name,
-            "href": "game/" + game.url,
-            "src": "//cdn.kaldirirmi.com/images/games/" +  game.picture
-          };
-          this.push('gamelist', current);
-        });
-              
       }
-      _handleNewsResponse(a){
+      _handleNewsResponse(a) {
         console.log("data", a.detail.response.length);
       }
 

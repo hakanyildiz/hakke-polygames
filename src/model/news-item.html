@@ -1,0 +1,190 @@
+<dom-module id="news-item">
+    <template>
+        <style>
+            :host {
+                @apply(--layout-vertical);
+                width: 100%;
+                height: 100%;
+            }
+
+            :host([score="0"]) #front {
+                width: 0;
+            }
+
+            :host([type="extended"]) {
+                background: #fff;
+            }
+
+            
+            /* BASIC ************/
+            iron-image {
+                max-width: 100%;
+                width: 100%;
+                /* height: 12.5em; */
+            }
+            figure {
+                margin: 10px;
+                box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+                0 1px 10px 0 rgba(0, 0, 0, 0.12),
+                0 2px 4px -1px rgba(0, 0, 0, 0.4);
+            }
+
+            figcaption {
+                margin-left: 10px;
+                margin-bottom: 10px;
+                color: #fff;
+                padding-right: 20px;
+            }
+
+
+            figure {
+                @apply(--layout-vertical);
+                width: 100%;
+                height: 100%;
+            }
+
+            figure a {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                opacity: .7;
+                transition: all ease-in-out .2s;
+            }
+
+            figure a:hover {
+                opacity: 1;
+            }
+
+            figure figcaption {
+                margin: 0px;
+                padding: 10px;
+                @apply(--layout-vertical);
+                justify-content: center;
+            }
+
+            figure a iron-image {
+                max-width: 100%;
+                width: 100%;
+                height: 100%;
+            }
+
+            /* EXTENDED ***************/
+            .item {
+                min-height: 110px;
+                text-decoration: none;
+                color: #fff;
+                background-color: white;
+                border: 1px solid #ddd;
+                cursor: pointer;
+                margin-bottom: 10px;
+                color: #000 !important;
+                @apply(--layout-horizontal);
+            }
+
+            .item .item-image {
+                padding: 10px;
+                @apply(--layout-horizontal);
+                @apply(--layout-flex-4);
+            }
+
+            .item .item-content {
+                padding: 10px;
+                @apply(--layout-flex-8);
+                line-height: 20px;
+            }
+
+            .item .item-content .primary {
+                font-weight: bold;
+                padding-bottom: 5px;
+            }
+
+         
+
+        </style>
+
+
+        <template is="dom-if" if=[[basic]]>
+            <figure>
+                <a href="news/[[item.url]]">
+                    <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
+                </a>
+                <figcaption>[[item.title]]</figcaption>
+            </figure>
+        </template>
+
+
+
+
+        <template is="dom-if" if=[[extended]]>
+            <a class="item" href="news/[[item.url]]">
+                <div class="item-image">
+                    <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
+                </div>
+                <div class="item-content">
+                    <div class="primary">
+                        [[item.title]]
+                    </div>
+                    <div class="shortText">
+                        [[item.subtitle]]
+                    </div>
+                </div>
+            </a>
+        </template>
+
+
+
+    </template>
+
+    <script>
+        /**
+         * `NewsItem` Description
+         *
+         * @summary news custom item.
+         * @customElement
+         * @polymer
+         * @extends {Polymer.Element}
+         */
+        class NewsItem extends Polymer.Element {
+            static get is() {
+                return 'news-item';
+            }
+            static get properties() {
+                return {
+                    type: {
+                        type: String,
+                        reflectToAttribute: true
+                    },
+                    item: Object,
+                    cdn: {
+                        type: String,
+                        value: 'https://cdn.kaldirirmi.com/images/news/',
+                    },
+                    basic: {
+                        type: Boolean,
+                        value: false,
+                        reflectToAttribute: true
+                    },
+                    extended: {
+                        type: Boolean,
+                        value: false,
+                        reflectToAttribute: true
+                    }
+
+                };
+            }
+            constructor() {
+                super();
+            }
+            ready() {
+                super.ready();
+
+                Polymer.RenderStatus.afterNextRender(this, function () {
+
+                });
+            }
+
+        }
+
+        window.customElements.define(NewsItem.is, NewsItem);
+    </script>
+</dom-module>

@@ -26,7 +26,8 @@
             #news-container {
                 @apply(--layout-horizontal);
                 margin: 10px 0px;
-                @apply(--shadow-elevation-2dp)
+                @apply(--shadow-elevation-2dp);
+                margin-top:0px;
             }
 
             #news-container .main-catalog {
@@ -70,6 +71,17 @@
                 padding-top: 5px;
             }
             
+            /* Smartphones (portrait and landscape) ----------- */
+            @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+                #news-container, #news-container .news-catalog{
+                    @apply(--layout-vertical);
+                    margin-left: -5px;
+                }
+                #news-container, #news-container .news-catalog .small-news-catalog{
+                    padding: 0px;
+                }
+            }
+
         </style>
 
         <div id="news-container">

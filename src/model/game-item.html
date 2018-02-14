@@ -101,7 +101,13 @@
                 padding-bottom: 12px;
             }
 
-
+            /* Smartphones (portrait and landscape) ----------- */
+            @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+                .game{
+                    min-height: 250px;
+                    height: 300px;
+                }
+            }
             /* Desktops and laptops ----------- */
             @media only screen  and (min-width : 1224px) {
                 .game{
@@ -141,8 +147,6 @@
                     </p>
                 </div>
             </div>
-
-            <!-- <div class="game-title"><span>[[game.title]]</span></div> -->
         </a>
 
     </template>

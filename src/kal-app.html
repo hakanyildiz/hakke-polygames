@@ -116,16 +116,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         app-drawer div[main-logo]{
             background-color: #ff7800;
             height: 64px;
-            @apply(--layout-horizontal);
-            @apply(--layout-center);
-            @apply(--layout-center-justified);
+            @apply --layout-horizontal;
+            @apply --layout-center;
+            @apply --layout-center-justified;
 
         }
 
         app-drawer div[main-logo] div[main-image] {
-          /* @apply(--layout-flex);       */
-          @apply(--layout-center);
-          @apply(--layout-center-justified);
+          /* @apply --layout-flex);       */
+          @apply --layout-center;
+          @apply --layout-center-justified;
 
         }
         app-drawer div[main-logo] div[main-image] a{
@@ -164,13 +164,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         app-header div[header-content]{
           width:100%;
           /* padding-bottom: 1rem; */
-          @apply(--layout-horizontal);
-          @apply(--layout-center);
-          @apply(--layout-justified-center);
+          @apply --layout-horizontal;
+          @apply --layout-center;
+          @apply --layout-justified-center;
         }
 
         app-header div[header-content] kal-search{
-          @apply(--layout-flex);
+          @apply --layout-flex;
         }
 
         app-header div[header-content] paper-button{
@@ -184,7 +184,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
     </custom-style>
-   
 
     <app-location
         route="{{route}}"
@@ -200,6 +199,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <!-- IronMediaQuery -->
     <iron-media-query query="(min-width: 768px)" query-matches="{{appHeaderConfig}}"></iron-media-query>
+    <iron-media-query query="(max-width: 768px)" query-matches="{{isMobile}}"></iron-media-query>
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
       <!-- Drawer content -->
@@ -251,7 +251,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             attr-for-selected="name"
             fallback-selection="view404"
             role="main">
-          <kal-home-page name="home"></kal-home-page>
+          <kal-home-page name="home" is-mobile=[[isMobile]]></kal-home-page>
           <kal-game-page name="game"></kal-game-page>
           <kal-news-page name="news"></kal-news-page>
           <kal-view404-page name="view404"></kal-view404-page>
@@ -274,6 +274,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             reflectToAttribute: true,
             observer: '_pageChanged',
           },
+          isMobile: Boolean,
           routeData: Object,
           subroute: String,
           // This shouldn't be neccessary, but the Analyzer isn't picking up

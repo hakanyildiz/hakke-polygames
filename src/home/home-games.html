@@ -1,11 +1,22 @@
 <dom-module id="home-games">
     <template>
         <style>
+            :host{
+                display: block
+            }
+            
+            /*mobile configuration */
+            :host([is-mobile]) #game-list game-item{
+                @apply --layout-horizontal;
+                /* @apply --layout-flex-1; */
+                width: 50%;
+            }
+            
             /* GAMELIST */
 
             #game-list {
-                @apply(--layout-horizontal);
-                @apply(--layout-center-center);
+                @apply --layout-horizontal;
+                @apply --layout-center-center;
                 margin: 10px 0px;
                 flex-flow: row wrap;
                 width: 100%;
@@ -13,28 +24,28 @@
             }
 
             #game-list game-item {
-                @apply(--layout-horizontal);
+                @apply --layout-vertical;
             }
 
              /* Smartphones (portrait and landscape) ----------- */
-             @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+             /* @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
                 #game-list game-item {
                     width: 50%;
                 }
-            }
+            } */
 
-            @media only screen  and (min-width : 1224px) {
+            @media only screen  and (min-width : 769px) {
                 #game-list game-item {
-                    @apply(--layout-vertical);
-                    @apply(--layout-flex-3);
+                    @apply --layout-flex-3;
                 }
             }
-
+            
         </style>
+
         <!-- Oyunlar -->
         <div id="game-list">
             <template is="dom-repeat" items="{{gamelist}}">
-                <game-item item="[[item]]"></game-item>
+                <game-item item="[[item]]" is-mobile=[[isMobile]]></game-item>
             </template>
         </div>
     </template>
@@ -46,7 +57,10 @@
 
             static get properties() {
                 return {
-
+                    isMobile: {
+                        type: Boolean,
+                        reflectToAttribute: true
+                    },
                     gamelist: {
                         type: Array,
                         value: [],

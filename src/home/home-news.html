@@ -24,63 +24,77 @@
             /***************** NEWS CONTAINER ***************************/
 
             #news-container {
-                @apply(--layout-horizontal);
+                @apply --layout-horizontal;
                 margin: 10px 0px;
-                @apply(--shadow-elevation-2dp);
-                margin-top:0px;
+                @apply --shadow-elevation-2dp;
+                margin-top: 0px;
             }
 
             #news-container .main-catalog {
-                @apply(--layout-flex-9);
-                @apply(--layout-vertical);
+                @apply --layout-flex-9;
+                @apply --layout-vertical;
             }
 
             .main-catalog .advert-catalog {
-                @apply(--layout-flex-3);
+                @apply --layout-flex-3;
                 background: blue;
                 padding: 10px;
             }
 
             .main-catalog .news-catalog {
-                @apply(--layout-flex-8);
-                @apply(--layout-horizontal);
+                @apply --layout-flex-8;
+                @apply --layout-horizontal;
                 padding: 10px;
             }
 
             .main-catalog .news-catalog .big-news-catalog {
-                @apply(--layout-flex-8);
-                @apply(--layout-vertical);
+                @apply --layout-flex-8;
+                @apply --layout-vertical;
             }
 
             .main-catalog .news-catalog .small-news-catalog {
-                @apply(--layout-vertical);
-                @apply(--layout-flex-4);
+                @apply --layout-vertical;
+                @apply --layout-flex-4;
                 padding: 0px 10px;
             }
 
             #news-container .side-catalog {
-                @apply(--layout-flex-4);
+                @apply --layout-flex-4;
                 padding: 10px;
             }
 
             .side-catalog #items {
-                @apply(--layout-vertical);
+                @apply --layout-vertical;
             }
+
             .continue-item {
-                @apply(--layout-vertical);
+                @apply --layout-vertical;
                 padding-top: 5px;
             }
-            
+
             /* Smartphones (portrait and landscape) ----------- */
-            @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+            /* @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
                 #news-container, #news-container .news-catalog{
-                    @apply(--layout-vertical);
+                    @apply --layout-vertical;
                     margin-left: -5px;
                 }
-                #news-container, #news-container .news-catalog .small-news-catalog{
+                #news-container,
+                #news-container .news-catalog .small-news-catalog {
                     padding: 0px;
                 }
+            } */
+
+            :host([is-mobile]) #news-container, :host([is-mobile]) #news-container .news-catalog {
+                @apply --layout-vertical;
+                margin-left: -5px;
             }
+            
+            
+            :host([is-mobile]) #news-container,
+            :host([is-mobile]) #news-container .news-catalog .small-news-catalog {
+                    padding: 0px;
+                }
 
         </style>
 
@@ -88,11 +102,11 @@
             <paper-material elevation="4" class="main-catalog">
                 <div class="news-catalog">
                     <div class="big-news-catalog">
-                        <news-item item="[[news.first]]" basic type="nondeclared"></news-item>
+                        <news-item item="[[news.first]]" basic type="nondeclared" is-mobile=[[isMobile]]></news-item>
                     </div>
                     <div class="small-news-catalog">
                         <template is="dom-repeat" items={{news.center}} as=item>
-                            <news-item item="[[item]]" basic></news-item>
+                            <news-item item="[[item]]" basic is-mobile=[[isMobile]]></news-item>
                         </template>
                     </div>
                 </div>
@@ -101,7 +115,7 @@
             <paper-material elevation="1" class="side-catalog">
                 <div id="items">
                     <template is="dom-repeat" items={{news.right}} as=item>
-                        <news-item item="[[item]]" extended></news-item>
+                        <news-item item="[[item]]" extended is-mobile=[[isMobile]]></news-item>
                     </template>
                 </div>
                 <div class="continue-item">
@@ -118,7 +132,11 @@
 
             static get properties() {
                 return {
-
+                    isMobile: {
+                        type: Boolean,
+                        notify: true,
+                        reflectToAttribute: true
+                    },
                     cdn: {
                         type: String,
                         value: 'https://cdn.kaldirirmi.com/images/news/',

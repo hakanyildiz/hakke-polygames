@@ -5,13 +5,13 @@
         <style>
             :host {
                 display: block;
-                @apply( --shadow-elevation-8dp);
+                @apply  --shadow-elevation-8dp;
 
             }
 
             .game{
-                @apply(--layout-vertical);
-                @apply(--layout-center);
+                @apply --layout-vertical;
+                @apply --layout-center;
                 /* margin: 5px; */
                 background-color: #222;
                 transition: all ease .2s;
@@ -54,7 +54,7 @@
             }
 
             .game-detail{
-                @apply(--layout-vertical);
+                @apply --layout-vertical;
                 color: #fff;
                 position: absolute;
                 bottom: 0;
@@ -66,14 +66,14 @@
             }
 
             .game-detail .game-detail-header{
-                @apply(--layout-horizontal);
+                @apply --layout-horizontal;
                 margin:0px 10px;
             }
 
             .game-detail .game-detail-header .game-detail-header-left{
-                @apply(--layout-vertical);
-                @apply(--layout-flex-3);
-                /* @apply(--layout-center-center); */
+                @apply --layout-vertical;
+                @apply --layout-flex-3;
+                /* @apply --layout-center-center); */
             }
 
             .game-title{
@@ -82,7 +82,7 @@
             }
 
             .game-detail .game-detail-header .game-detail-header-right{
-                @apply(--layout-flex-1);
+                @apply --layout-flex-1;
             }
 
             .game-score{

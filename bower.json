@@ -22,7 +22,8 @@
     "paper-item": "PolymerElements/paper-item#^2.0.0",
     "iron-image": "PolymerElements/iron-image#^2.1.2",
     "paper-material": "PolymerElements/paper-material#^2.0.0",
-    "paper-fab": "PolymerElements/paper-fab#^2.0.0"
+    "paper-fab": "PolymerElements/paper-fab#^2.0.0",
+    "paper-input": "PolymerElements/paper-input#^2.1.1"
   },
   "resolutions": {
     "polymer": "^2.0.0"

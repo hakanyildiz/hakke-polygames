@@ -95,7 +95,17 @@
             :host([is-mobile]) #news-container .news-catalog .small-news-catalog {
                     padding: 0px;
                 }
+                
 
+            /* Ipad Pro */ 
+            @media only screen and (min-width: 769px) and (max-width: 1224px) {
+                #news-container{
+                    @apply --layout-vertical;
+                }
+                #news-container news-item[basic]{
+                    min-height: 175px;
+                }
+            }
         </style>
 
         <div id="news-container">

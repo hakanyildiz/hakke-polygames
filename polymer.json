@@ -1,11 +1,11 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/my-app.html",
+  "shell": "src/kal-app.html",
   "fragments": [
-    "src/my-view1.html",
-    "src/my-view2.html",
-    "src/my-view3.html",
-    "src/my-view404.html"
+    "src/kal-home-page.html",
+    "src/kal-game-page.html",
+    "src/kal-news-page.html",
+    "src/kal-view404-page.html"
   ],
   "sources": [
     "src/**/*",

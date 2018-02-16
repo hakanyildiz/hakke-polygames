@@ -133,7 +133,7 @@
         <template is="dom-if" if=[[basic]]>
             <figure>
                 <a href="news/[[item.url]]">
-                    <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
+                    <iron-image src="[[cdn]][[item.picture]]" preload fade sizing="cover"></iron-image>
                 </a>
                 <figcaption>[[item.title]]</figcaption>
             </figure>
@@ -145,7 +145,7 @@
         <template is="dom-if" if=[[extended]]>
             <a class="item" href="news/[[item.url]]">
                 <div class="item-image">
-                    <iron-image src="[[cdn]][[item.picture]]" preload sizing="cover"></iron-image>
+                    <iron-image src="[[cdn]][[item.picture]]" preload fade sizing="cover"></iron-image>
                 </div>
                 <div class="item-content">
                     <div class="primary">

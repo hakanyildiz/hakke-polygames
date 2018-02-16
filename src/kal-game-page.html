@@ -1,28 +1,293 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="./model/game-item.html">
 
 <dom-module id="kal-game-page">
   <template>
     <style include="shared-styles">
       :host {
+        /* @apply --layout-vertical;
+        width: 100%;
+        height: 100%; */
         display: block;
-
         padding: 10px;
+        font-size: calc(0.6em + (1.3125 - 1) * ((100vw - 20em) / (80 - 20)));
+        line-height: calc(1em + (1.8 - 1.4) * ((100vw - 20em) / (80 - 20)));
+
+      }
+
+      :host([is-mobile]) #allgames{
+        @apply --layout-vertical;
+      }
+
+      :host([selected-game-active]) {
+        background: red;
+      }
+
+      #allgames {
+        @apply --layout-horizontal;
+        width: 100%;
+        height: 100%;
+      }
+
+
+      #allgames .main {
+        background: red;
+        @apply --layout-flex-8;
+
+        @apply --layout-horizontal;
+        flex-flow: row wrap;
+        -ms-flex-flow: row wrap;
+        width: 100%;
+        height: auto;
+        margin-left: 100px;
+        background: #222;
+        justify-content: center;
+        margin: 10px 0px;
+
+      }
+
+      #allgames .sidebar {
+        background: green;
+
+        @apply --layout-vertical;
+        @apply --layout-flex-4;
       }
     </style>
 
-    <div class="card">
-      <div class="circle">2</div>
-      <h1>View Two</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
-    </div>
+    <app-route route="{{route}}" pattern="/:gameUrl" data="{{data}}" active="{{selectedGameActive}}"></app-route>
+
+    <!-- Selected Game Page -->
+    <template is="dom-if" if={{selectedGameActive}}>
+      selected game
+    </template>
+
+    <!-- All Game Page -->
+    <template is="dom-if" if={{!selectedGameActive}}>
+
+      <div id="allgames">
+        <div class="main">
+          <template is="dom-repeat" items={{gamelist}}>
+              <game-item item="[[item]]" is-mobile=[[isMobile]] basic></game-item>
+          </template>
+        </div>
+        <div class="sidebar">
+          
+          <paper-item></paper-item>
+          
+
+          side
+        </div>
+      </div>
+
+
+    </template>
+
 
   </template>
 
   <script>
     class KalGamePage extends Polymer.Element {
       static get is() { return 'kal-game-page'; }
+      /**
+        * Object describing property-related metadata used by Polymer features
+        */
+      static get properties() {
+        return {
+          isMobile: {
+            type: Boolean,
+            reflectToAttribute: true
+          },
+          gamelist: {
+            type: Array,
+            value: [],
+            notify: true
+          },
+          route: {
+            type: Object,
+          },
+          data: {
+            type: Object,
+            observer: '_selectedGameChanged'
+          },
+          selectedGameActive: {
+            type: Boolean,
+            reflectToAttribute: true,
+            observer: '_selectedGameActiveChanged'
+          },
+        };
+      }
+
+
+      connectedCallback() {
+        super.connectedCallback();
+
+        /////////////////////////////
+        const games = [
+          {
+            "name": "Tannenberg",
+            "picture": "tannenberg-logo.jpg",
+            "url": "tannenberg",
+            "releasedate": "16.11.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Shooter",
+            "developer": null,
+            "publisher": "M2H, Blackmill Games"
+          },
+          {
+            "name": "Crackdown 3",
+            "picture": "crackdown-3-logo.jpg",
+            "url": "crackdown-3",
+            "releasedate": "7.11.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Adventure,Shooter",
+            "developer": null,
+            "publisher": "Microsoft Studios"
+          },
+          {
+            "name": "Call of Duty: WWII",
+            "picture": "call-of-duty-WWII-logo.jpg",
+            "url": "call-of-duty--wwii",
+            "releasedate": "3.11.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Online,Role Playing,Shooter",
+            "developer": null,
+            "publisher": "Activision\t"
+          },
+          {
+            "name": "Wolfenstein II: The New Colossus",
+            "picture": "wolfenstein-2-logo.jpg",
+            "url": "wolfenstein-ii--the-new-colossus",
+            "releasedate": "27.10.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Shooter",
+            "developer": null,
+            "publisher": "Bethesda Softworks\t"
+          },
+          {
+            "name": "Tannenberg",
+            "picture": "tannenberg-logo.jpg",
+            "url": "tannenberg",
+            "releasedate": "16.11.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Shooter",
+            "developer": null,
+            "publisher": "M2H, Blackmill Games"
+          },
+          {
+            "name": "Crackdown 3",
+            "picture": "crackdown-3-logo.jpg",
+            "url": "crackdown-3",
+            "releasedate": "7.11.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Adventure,Shooter",
+            "developer": null,
+            "publisher": "Microsoft Studios"
+          },
+          {
+            "name": "Call of Duty: WWII",
+            "picture": "call-of-duty-WWII-logo.jpg",
+            "url": "call-of-duty--wwii",
+            "releasedate": "3.11.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Online,Role Playing,Shooter",
+            "developer": null,
+            "publisher": "Activision\t"
+          },
+          {
+            "name": "Wolfenstein II: The New Colossus",
+            "picture": "wolfenstein-2-logo.jpg",
+            "url": "wolfenstein-ii--the-new-colossus",
+            "releasedate": "27.10.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Shooter",
+            "developer": null,
+            "publisher": "Bethesda Softworks\t"
+          },
+          {
+            "name": "Call of Duty: WWII",
+            "picture": "call-of-duty-WWII-logo.jpg",
+            "url": "call-of-duty--wwii",
+            "releasedate": "3.11.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Online,Role Playing,Shooter",
+            "developer": null,
+            "publisher": "Activision\t"
+          },
+          {
+            "name": "Call of Duty: WWII",
+            "picture": "call-of-duty-WWII-logo.jpg",
+            "url": "call-of-duty--wwii",
+            "releasedate": "3.11.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Online,Role Playing,Shooter",
+            "developer": null,
+            "publisher": "Activision\t"
+          },
+          {
+            "name": "Crackdown 3",
+            "picture": "crackdown-3-logo.jpg",
+            "url": "crackdown-3",
+            "releasedate": "7.11.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Adventure,Shooter",
+            "developer": null,
+            "publisher": "Microsoft Studios"
+          },
+          {
+            "name": "Call of Duty: WWII",
+            "picture": "call-of-duty-WWII-logo.jpg",
+            "url": "call-of-duty--wwii",
+            "releasedate": "3.11.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Online,Role Playing,Shooter",
+            "developer": null,
+            "publisher": "Activision\t"
+          },
+          {
+            "name": "Wolfenstein II: The New Colossus",
+            "picture": "wolfenstein-2-logo.jpg",
+            "url": "wolfenstein-ii--the-new-colossus",
+            "releasedate": "27.10.2017 00:00:00",
+            "background": null,
+            "genres": "Action,Shooter",
+            "developer": null,
+            "publisher": "Bethesda Softworks\t"
+          },
+        ];
+
+        games.forEach((game) => {
+          let current = {
+            "title": game.name,
+            "href": "game/" + game.url,
+            "src": "//cdn.kaldirirmi.com/images/games/" + game.picture
+          };
+          this.push('gamelist', current);
+        });
+
+      }
+
+      _selectedGameActiveChanged(selectedGameActive, previousValue) {
+        // console.log('selectedGameActive: ', selectedGameActive);
+        // console.log('previousValue: ', previousValue);
+
+      }
+
+      _selectedGameChanged(selectedGame, previousValue) {
+
+        if (Object.keys(selectedGame).length !== 0) {
+          //Error Fix for /game/ subroute
+          if (selectedGame.gameUrl.length === 0)
+            this.selectedGameActive = false;
+        }
+
+        //   console.log('selectedGame: ', selectedGame);
+        //   console.log('previousValue: ', previousValue);
+
+      }
+
+
+
     }
 
     window.customElements.define(KalGamePage.is, KalGamePage);

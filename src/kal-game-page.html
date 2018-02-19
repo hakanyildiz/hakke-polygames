@@ -6,6 +6,7 @@
   <template>
     <style include="shared-styles">
       :host {
+
         /* @apply --layout-vertical;
         width: 100%;
         height: 100%; */
@@ -16,7 +17,7 @@
 
       }
 
-      :host([is-mobile]) #allgames{
+      :host([is-mobile]) #allgames {
         @apply --layout-vertical;
       }
 
@@ -53,6 +54,279 @@
         @apply --layout-vertical;
         @apply --layout-flex-4;
       }
+
+
+      /* Toolbar Settings */
+
+      app-toolbar {
+        background-color: #E65100;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+        font-weight: bold;
+        color: white;
+        font-size: 18px;
+        z-index: 1;
+      }
+
+      app-toolbar paper-icon-button {
+        --paper-icon-button-ink-color: white;
+      }
+
+
+      .item {
+        @apply --layout-vertical;
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+
+      .item .item-column {
+        @apply --layout-horizontal;
+        @apply --layout-center;
+      }
+
+      .item .item-column-rowler {
+        @apply --layout-vertical;
+        margin-top: 20px;
+        border-top: 1.5px solid black;
+        font-weight: 400;
+        width: 100%;
+      }
+
+      .item .item-column .benchmark {
+        background: #E65100;
+        border-radius: 40%;
+        padding: 10px;
+        margin-right: 10px;
+        color: white;
+      }
+
+      .item .item-column-invisible {
+        display: none;
+        opacity: 0;
+        transition: opacity 1s linear;
+      }
+
+      .avatar {
+        height: 106px;
+        width: 190px;
+        box-sizing: border-box;
+        background-color: #DDD;
+      }
+
+      .pad {
+        padding: 0 16px;
+        @apply --layout-flex;
+        @apply --layout-vertical;
+      }
+
+      .primary {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .shortText,
+      .longText {
+        font-size: 14px;
+      }
+
+      .item.expanded .item-column-invisible {
+        opacity: 1;
+        display: flex !important;
+      }
+
+      .spacer {
+        @apply --layout-flex;
+      }
+
+      @media (max-width: 460px) {
+        paper-toolbar .bottom.title {
+          font-size: 14px;
+        }
+      }
+
+      .loadingIndicator {
+        left: 0;
+        right: 0;
+        position: relative;
+        top: 6em;
+      }
+
+      #hardware-list-container {
+        min-height: 400px;
+        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+        padding: 15px;
+      }
+
+      paper-dropdown-menu {
+        line-height: 0 !important;
+        --paper-input-container-label: {
+          color: white;
+          text-align: center;
+          font-weight: bold;
+          font-size: calc(0.45em + 1vmin);
+        }
+        ;
+        --paper-input-container-input: {
+          color: white;
+          text-align: center;
+          text-transform: uppercase;
+          font-size: calc(0.45em + 1vmin);
+
+        }
+        ;
+        --paper-input-container-focus-color: white;
+        --paper-input-container-underline: {
+          display: none;
+        }
+        ;
+
+      }
+
+      .searchInput {
+        @apply --layout-flex;
+        font-size: 18px;
+        padding: 10px 20px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        -webkit-appearance: none;
+        border-radius: 0px;
+      }
+
+      .searchInput::-webkit-input-placeholder {
+        color: white;
+      }
+
+      .searchInput:-moz-placeholder {
+        /* Firefox 18- */
+        color: white;
+      }
+
+      .searchInput::-moz-placeholder {
+        /* Firefox 19+ */
+        color: white;
+      }
+
+      .searchInput:-ms-input-placeholder {
+        color: white;
+      }
+
+      .searchInput:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .searchInput:focus {
+        background-color: white;
+        outline: none;
+        color: black;
+      }
+
+      .empty-message {
+        color: #ff7800;
+        text-align: center;
+        font-size: 1.2em;
+      }
+
+
+      .searchInput,
+      #mobileSearchInput {
+        outline: none !important;
+        display: none;
+      }
+
+      #mobileSearchInput {
+        z-index: 111;
+        width: 80%;
+        -ms-flex: 1 1 0.000000001px;
+        -webkit-flex: 1;
+        flex: 1;
+        -webkit-flex-basis: 0.000000001px;
+        flex-basis: 0.000000001px;
+        font-size: 18px;
+        padding: 10px 20px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        -webkit-appearance: none;
+        border-radius: 0px;
+        position: absolute;
+        top: 10px;
+        background: #E65100;
+        left: 60px;
+      }
+
+      #newscastSearchInput,
+      #reviewcastSearchInput {
+        display: none;
+        z-index: 111;
+        width: 85%;
+        -ms-flex: 1 1 0.000000001px;
+        -webkit-flex: 1;
+        flex: 1;
+        -webkit-flex-basis: 0.000000001px;
+        flex-basis: 0.000000001px;
+        font-size: 18px;
+        padding: 16px 10px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        -webkit-appearance: none;
+        border-radius: 0px;
+        position: absolute;
+        top: 5px;
+        background: #E65100;
+        left: 55px;
+      }
+
+      #newscastSearchInput:focus,
+      #reviewcastSearchInput:focus {
+        background-color: white;
+        outline: none;
+        color: black;
+      }
+
+
+      #mobileSearchIcon {
+        margin-right: 15px;
+      }
+
+      @media only screen and (min-width: 768px) {
+        .searchInput {
+          display: block;
+        }
+        #mobileSearchIcon {
+          display: none;
+        }
+      }
+
+      .inputOpened {
+        display: block !important;
+      }
+
+      .newscastOpened {
+        display: block !important;
+      }
+
+
+      paper-button[continue] {
+        background: #222;
+        width: 15%;
+        transition: all ease-in-out .3s;
+      }
+
+      paper-button[continue]:hover {
+        transform: scale(1.1);
+      }
+
+      a[continueurl] {
+        text-decoration: none;
+        color: #fff;
+
+
+
+      }
     </style>
 
     <app-route route="{{route}}" pattern="/:gameUrl" data="{{data}}" active="{{selectedGameActive}}"></app-route>
@@ -64,10 +338,41 @@
 
     <!-- All Game Page -->
     <template is="dom-if" if={{!selectedGameActive}}>
+
+      <app-toolbar>
+        <div class="mobileSearchHardware" id="cpuMobileSearch">
+          <paper-icon-button id="newscastSearchIcon" on-tap="_mobileSearchIcon" icon="search"></paper-icon-button>
+          <input id="newscastSearchInput" type="search" placeholder="Haber Ara" value="{{query::input}}" />
+        </div>
+
+        <paper-dropdown-menu label="Dinosaurs">
+          <paper-listbox slot="dropdown-content" selected="1">
+            <paper-item>allosaurus</paper-item>
+            <paper-item>brontosaurus</paper-item>
+            <paper-item>carcharodontosaurus</paper-item>
+            <paper-item>diplodocus</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+
+        <paper-dropdown-menu class="pdmHeader" label="Sıralama">
+          <paper-listbox style="background-color:#E65100; color:white" class="dropdown-content" attr-for-selected="value" selected="releasedate">
+            <paper-item value="releasedate">Eklenme Tarihi</paper-item>
+            <paper-item value="title">Haber Başlığı</paper-item>
+            <paper-item value="viewcount">Görüntülenme Sayısı</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+        <paper-dropdown-menu class="pdmHeader" label="Kriter">
+          <paper-listbox style="background-color:#E65100; color:white" class="dropdown-content" attr-for-selected="value" selected="desc">
+            <paper-item value="desc">Azalan</paper-item>
+            <paper-item value="asc">Artan</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+      </app-toolbar>
+
       <div id="allgames">
         <div class="main">
           <template is="dom-repeat" items={{gamelist}}>
-              <game-item item="[[item]]" is-mobile=[[isMobile]] basic></game-item>
+            <game-item item="[[item]]" is-mobile=[[isMobile]] basic></game-item>
           </template>
         </div>
       </div>

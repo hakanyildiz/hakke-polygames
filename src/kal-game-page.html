@@ -64,23 +64,13 @@
 
     <!-- All Game Page -->
     <template is="dom-if" if={{!selectedGameActive}}>
-
       <div id="allgames">
         <div class="main">
           <template is="dom-repeat" items={{gamelist}}>
               <game-item item="[[item]]" is-mobile=[[isMobile]] basic></game-item>
           </template>
         </div>
-        <div class="sidebar">
-          
-          <paper-item></paper-item>
-          
-
-          side
-        </div>
       </div>
-
-
     </template>
 
 
